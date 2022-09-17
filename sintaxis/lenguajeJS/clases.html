@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+class intrumento{
+
+    ROLE = "Teacher"; // SE PUEDE DECLARAR PROPIEDADES JUSTO DEPUES DE LA DECLARACIION DE LA CLASE Y NO NECESARIAMENTE DENTRO DEL CONTRUCTOR CON THIS
+                      //(DENTRAN LA MISMA DINAMICA QUE LAS QUE SE DECLARAN DENTRO DEL CONSTRUCTOR)
+    
+    // PROPIEDAD PRIVADA                  
+    #secreto = "me gusta internet explorer"
+
+    // METODO PROIVADO
+    #DecirSecreto(){
+       console.log(this.#secreto)
+    }
+
+    #PrivPrueba(){
+       //si puede acceder a metodos y propidades publicas pero tampoco a metodos estaticos
+       console.log(this.ROLE)
+       this.saludar()
+       console.log(this.TIPO)
+       
+       //no puede accder a estatic
+       //this.EstaticPrueba() //err
+    }
+
+
+
+    constructor(tipo,genero,tocar) { // funcion especial para declarar el contructor
+
+    // PROPIEDADES A LAS QUE SE TENDRAN ACCESO DESDE TODA LA CLASE ,MENOS O SOLO (VALIDANDO)
+
+    this.TIPO = tipo;
+    this.GENERO = genero;
+    this.TOCAR = tocar;
+    this.IMPROVISAR = null;
+    this.NOMBREPERSONALIZADO = null
+
+    //SE PUEDEN CREAR VARIABLES EN EL CONTRUCTOR Y/O EN CUALQUIER METODO Y SOLO TENDRAN ALCANCE DENTRO DE DONDE SE CREARON(COMO NORMALMENTE)
+    const MATERIAL = "MADERA";
+
+    }
+
+
+    /* LOS METODOS NO SIGUEN EL ORDEN EN EL QUE FUERON DECLARADOS,POR LO QUE NO NECESARIAMENTE PUEDES LLAMAR A UN METODO SIEMPRE Y CUANDO YA HAYA SIDO DECLARADO ,
+       ES DECIR QUE SE PUEDE LLAMAR A UN -METODO2 DESDE OTRO QUE SE DECLARO ANTES -METODO1 */
+
+    
+    
+
+    saludar(){
+        console.log("hola")
+    }   
+
+    PublicPrueba(){
+        console.log("funcion de prueba publica ejecutada")
+        this.#PrivPrueba()
+    }   
+
+    tocar_en(){
+        console.log(`aplico para tocar en ${this.GENERO}`)
+    }
+
+    desde(){
+        return `que se inventaron por un ${this.role}`
+    };
+
+    sonido_con(){
+        console.log(`se tocan con ${this.TOCAR} desde ${this.desde()}`)
+        //this.prueba() // this.EstaticPrueba is not a function at intrumento.sonido_con -error debido a que un metodo publico no puede llamar a uno estatico
+    }
+
+    ForzarSacrilegio(){
+        this.#DecirSecreto()
+        console.log(this.#secreto) // metodo publico tambien puede acceder a propiedades privadas
+    }
+
+    static EstaticPrueba(){
+        console.log("funcion de prueba estatica ejecutada")
+    }
+
+
+    static definicion(){ // estatic se usa para definir un metodo que se pueda ejecutar sin necesidad de haber creado un objeto la misma clase (CONTRUCTOR STRING EN PYTHON)
+        console.log("un intrumento es una herramienta usada para interpretar musica")
+        this.EstaticPrueba() // ejecutado - siendo estatico si se puede acceder desde a el desde otro metodo estatico
+        console.log(this.TIPO) // undefined debido a que siendo metodo estatico solo puede acceder a  metodos estaticos
+    }
+
+
+    set SETimpro(IMPRO){ // funcion set para alojar el dato en el atributo correspodiente(EN ESTE CASO THIS.IMPROVISAR) cuando se le pase el argumento al llamar a la funcion(se trata como atributo)
+        this.IMPROVISAR = IMPRO.toUpperCase()
+
+    }
+
+    get GETimpro () { // funcion get para devolver el valor de dicho atributo a quien lo esta solicitando al llamar a la funcion(se trata como atributo)
+        return this.IMPROVISAR
+    } 
+
+} 
+
+
+const guitarra = new intrumento("cuerdas","rock","dedos")
+// console.log(guitarra)
+// guitarra.tocar_en()
+// guitarra.sonido_con()
+// intrumento.definicion()
+// guitarra.SETimpro = "yes"
+// console.log(guitarra.GETimpro)
+
+
+//METODOS Y PROPIEDADES PUBLICAS 
+
+                  //METODO/PROPIEDAD
+/* SOLO SE PUEDEN EJECUTAR/ACCEDER DESDE LA INSTANCIA CREADA (OBJETO.METODO/PROPIEDAD) Y SE PUEDEN 
+HACER REFERENCIA A ELLOS DESDE THIS EN LA CLASE (EJECUTAR/ACCEDER) */  
+
+     //    "rock"           undefineded
+console.log(guitarra.GENERO,intrumento.GENERO)
+
+guitarra.GENERO = "BLUES" // debido a que es publica se puede acceder y actualizar valor desde la instancia para el mismo (guitarra en este caso)
+
+guitarra.sonido_con() // >> ejecuta sin ningun problema 
+//intrumento.sonido_con() // ERROR - intrumento.tocar_en is not a function
+
+
+//METODOS ESTATICOS - 
+
+/*SOLO SE PUEDEN EJECUTAR DESDE LA CLASE Y NO DESDE LA INSTANCIA(OBJETO)
+Y SE PUEDEN HACER REFERENCIA A ELLOS DESDE THIS EN LA CLASE 
+(considerar que solo los metodos estaticos pueden ejecutar/hacer referenia a otros metodos estaticos desde this) */
+
+intrumento.definicion()
+//guitarra.definicion() // ERROR -is not a function
+
+// METODOS Y PROPIEDADES PRIVADAS 
+
+                  //METODO/PROPIEDAD
+/* SOLO SE PUEDEN EJECUTAR/ACCEDER DESDE UN METODO PUBLICO
+(HACER REFERENCIA A ELLOS DESDE THIS EN LA METODO) */  
+
+ guitarra.ForzarSacrilegio() // ejecutado ya que metodo publico accede a ellos en su declaracion
+
+ //guitarra.#DecirSecreto() //err - no se puede acceder
+ //guitarra.#secreto // error -no se puede acceder
+
+ //LOS METODOS PRIVADOS TAMBIEN PUEDEN ACCEDER A METODOS Y PROIPIEDADES PUBLICAS PERO NO ESTATICAS
+ guitarra.PublicPrueba()
+
+//GET(OBTENER) Y SET(SETEAR)
+
+console.log(guitarra.IMPROVISAR)
+guitarra.SETimpro = "yes"
+console.log(guitarra.GETimpro)
+
+
+
+
+
+// HERENCIA CON CLASS
+
+class artista extends intrumento{
+
+    constructor(tipo,genero,tocar,anios_actuando) { // funcion especial para declarar el contructor
+        super(tipo,genero,tocar) // la funcion super manda a llamar al contructor del padre y sus parametros que reutilizaremos
+        this.ACTUANDO = anios_actuando // declaramos solo el/los this que agregaamos a la nueva clase
+    }
+
+    tocar_en(){ // sobre escritura del metodo que esta en la class padre (no se modifica metodo en la clase padre)
+       console.log(`interpreto con el genero ${this.GENERO}`)
+    }
+
+    antiguedad(){
+       console.log(`llevo actuando ${this.ACTUANDO}`)
+    }
+
+    //sobrescritura de metodo del padre y al mismo,tiempo ejecutar metodo del padre antes de ejecutar codigo del nuevo metodo sobreescrito 
+    sonido_con(){ 
+        super.sonido_con()
+        return "nueva funcionalidad"
+    }
+}
+
+const isai = new artista("guitarrista","rock","dedos","20 AÑOS")
+console.log(isai)
+isai.tocar_en()
+isai.antiguedad()
+isai.sonido_con()
+
+
+
+    </script>
+</body>
+</html>

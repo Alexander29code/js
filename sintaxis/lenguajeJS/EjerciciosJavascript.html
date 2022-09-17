@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+//         console.log("012345".slice(1,4))
+
+//         function Myslice(cadena,desde,hasta) { 
+
+// let nwCortado = ""
+
+// for (let index = 0; index < cadena.length; index++) {
+
+//     if (index >= desde && index <= hasta ) {
+//         nwCortado += cadena[index]
+        
+//     }
+         
+// }
+
+//  return nwCortado
+
+// }
+
+    //     function Myslice(cadena,desde,hasta) { 
+
+    //         let nwCortado
+            
+    //         for (let index = 0; index < cadena.length; index++) {
+
+    //             if (index >= desde && index <= hasta ) {
+    //                 nwCortado?
+    //                 nwCortado += cadena[index]
+    //                 :nwCortado = cadena[index]
+                    
+    //             }
+                     
+    //         }
+
+    //          return nwCortado
+
+    //     }
+
+    //    console.log(Myslice("012345",1,4))
+
+// FUNCION CONVERTIR STRING A LISTA PASANDOLE UN SEPARADOR SPLIT() , pero mejorada ya que si el elemento es "" no se tomara como elemento
+
+const Recort = (str,separador)=>{
+
+    const newlis =[]
+    let corte = ""
+
+    for (const el of str) {
+       
+        if (el !== separador || (str.indexOf(el) === str.length - 1 && el !== separador) ){
+            corte += el
+        }
+        
+        if ((el === separador || str.indexOf(el) === str.length-1)) {
+            if (!(corte==="")) {
+                newlis.push(corte)
+                corte = ""      
+            }
+            
+        }
+    }
+
+    return newlis
+
+}
+
+
+console.log(Recort(",hola,nerd,",","))
+console.log(",hola,nerd,".split(","))
+
+
+
+//  insertar elementos en una posición concreta del array
+
+ const ARRAY = [1,2,7,8,9,10]
+
+ //sin modificar el arreglo original
+                                        
+ const NUEVO_ARRAY = ARRAY.slice(0,2).concat([3,4,5,6],ARRAY.slice(2))
+ console.log(NUEVO_ARRAY)
+
+//modificando el arreglo original
+           // o  3,4,5,6   
+ ARRAY.splice(2,0,...[3,4,5,6])
+
+
+ const array = ["a", "b", "c", "d", "e", "f"];
+
+// Estos métodos modifican el array original
+                //0 hasta indice tal(en este caso 5) excluido,corte de ini a end(excluido)
+array.copyWithin(5, 0, 1); // Devuelve ['a', 'b', 'c', 'd', 'e', 'a']
+array.copyWithin(3, 0, 3); // Devuelve ['a', 'b', 'c', 'a', 'b', 'c']
+
+          //elemento que se agaregagara repetidamente, desde indi hasta end (excluido) remplazando a quienes estaban ahi
+array.fill("Z", 0, 5); // Devuelve ['Z', 'Z', 'Z', 'Z', 'Z', 'c']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UFT-8">
+        <meta name="viewport" content="width=device-width,
+        initial-scale=1.0">
+        <title>JAVASCRIPT</title>
+    </head>
+
+    <body>
+        
+        <h1>JAVASCRIPT</h1>
+
+        <script>
+        
+           
+           /*
+           
+            LENGUAJES ESTATICOS: Cuando creamos una variable, debemos indicar el tipo de dato del valor que va a contener. En consecuencia, 
+            el valor asignado finalmente, siempre deberá ser del tipo de dato que hemos indicado (si definimos que es un número debe ser un número, 
+            si definimos que es un texto debe ser un texto, etc...).
+
+            LENGUAJERS DINAMICOS: Cuando creamos una variable, no es necesario indicarle el tipo de dato que va a contener. El lenguaje de 
+            programación se encargará de deducir el tipo de dato (dependiendo del valor que le hayamos asignado).
+
+
+            En el caso de los lenguajes dinámicos, realmente el tipo de dato se asocia al valor (en lugar de a la variable). 
+            De esta forma, es mucho más fácil entender que a lo largo del programa, dicha variable puede «cambiar» a tipos de datos diferentes, 
+            ya que la restricción del tipo de dato está asociada al valor y no a la variable en sí.
+
+            JAVASCRIPT pertenece a los lenguajes dinámicos, ya que automáticamente detecta de que tipo de dato se trata en cada caso, dependiendo 
+            del contenido que le hemos asignado a la variable.
+
+            En muchas ocasiones (y de manera informal) también se suele hacer referencia a lenguajes tipados (tipado fuerte, o fuertemente tipado) o 
+            lenguajes no tipados (tipado débil, debilmente tipado), para indicar si el lenguaje requiere indicar manualmente el tipo de dato de las variables o no, 
+            respectivamente.
+
+
+
+                    Tipo de dato	          Descripción	                                               Ejemplo básico
+
+
+                    number	                  Valor numérico (enteros, decimales, etc...)	               42
+                    bigint	                  numérico grande	                                           1234567890123456789n
+                    string	                  Valor de texto (cadenas de texto, carácteres, etc...)	       'MZ'
+                    boolean	                  Valor booleano (valores verdadero o falso)	               true
+                    undefined	              Valor sin definir (variable sin inicializar)                 undefined
+                    function	              Función (función guardada en una variable)	               function() {}
+                    symbol	                  Símbolo (valor único)	                                       Symbol(1)
+                    object	                  Objeto (estructura más compleja)	                           {}
+                            
+           
+           */
+
+           //IDENTIFICAR TIPO DE DATO PRIMITIVO
+
+
+                var s = "Hola, me llamo Manz"; // s, de string
+                var n = 42; // n, de número
+                var b = true; // b, de booleano
+                var u; // u, de undefined
+
+
+                console.log(typeof(s)); // "string"
+                console.log(typeof(n)); // "number"
+                console.log(typeof(b)); // "boolean"
+                console.log(typeof(u)); // "undefined"
+                 
+                
+                console.log(typeof(NaN)) //'number'
+                console.log(typeof(undefined)) //'undefined'
+                
+                //PRIMITIVO ESPECIAL?
+                console.log(typeof(null)) //'object
+                
+
+            // CONSTRUCTOR.NAME
+  
+                /*
+                OJO: La función typeof() no nos servirá para variables con tipos de datos más complejos, ya que siempre los mostrará como object. 
+                Es mejor utilizar constructor.name.
+                */
+                
+                //OJO: Sólo funciona en variables definidas (no undefined) y sólo en ECMAScript 6.
+                
+                null //null
+                undefined //undefined
+                NaN //NaN
+                Function // ƒ Function() { [native code] }
+                Object //ƒ Object() { [native code] }
+                Number //ƒ Number() { [native code] }
+                String //ƒ String() { [native code] }
+                Boolean //ƒ Boolean() { [native code] }
+                Symbol //ƒ Symbol() { [native code] }
+                Set //ƒ Set() { [native code] }
+                Map //ƒ Map() { [native code] }
+                Date //ƒ Date() { [native code] }
+               
+
+                console.log(s.constructor.name); // String
+                console.log(n.constructor.name); // Number
+                console.log(b.constructor.name); // Boolean
+                
+                console.log(Set.constructor.name) //'Function'
+                console.log(Map.constructor.name) //funcion
+                console.log(Function.constructor.name) // 'Function'
+
+                console.log([].constructor.name) // 'Array'
+
+                console.log(u.constructor.name); // ERROR, sólo funciona con variables definidas o el contructor
+
+            //OBJETO INSTANCEOF CONSTRUCTOR 
+
+                    /*
+                    
+                    objeto:
+                        Objeto a verificar.
+
+                    constructor:
+                        Función contra la que se hará la verificación.
+                    
+                    */
+
+                    //Debe especificar un objeto en el lado izquierdo del operador instanceof. Por ejemplo, puede especificar una cadena creada con el constructor String, 
+                    //pero no puede especificar un literal de cadena.
+
+                    color1=new String("verde")
+                    color1 instanceof String // devuelve verdadero (true)
+
+                    color2="coral"
+                    color2 instanceof String // devuelve falso (color2 no es un objeto String)
+                    
+                    // el objeto string herada tambien de objeto al igual que todos los tipos de datos en javascript
+                    color2 instanceof Object;
+
+                    //funciona porque al declarar [] ya es un objeto en si ,nada mas que de tipo Array
+                     [] instanceof Array // True
+
+
+                    //ejemplo con funcion contructora
+                    function Coche(fabricante, modelo, ejercicio) {
+                        this.fabricante = fabricante
+                        this.modelo = modelo
+                        this.ejercicio= ejercicio
+                    }
+
+                    console.log(Coche)  /*
+                                        ƒ Coche(fabricante, modelo, ejercicio) {
+                                            this.fabricante = fabricante
+                                            this.modelo = modelo
+                                            this.ejercicio= ejercicio
+                                        }
+                                        */
+                    
+
+                    miCoche = new Coche("Honda", "Accord", 1998)
+                    
+                    //instancia.contructor se refiere a la funcion contructora del que fue creada la instancia miCoche
+                    console.log(miCoche.constructor)
+                                                    /*
+                                                    ƒ Coche(fabricante, modelo, ejercicio) {
+                                                        this.fabricante = fabricante
+                                                        this.modelo = modelo
+                                                        this.ejercicio= ejercicio
+                                                    }
+                                                    */         
+                    console.log(miCoche.constructor.name) //coche
+
+                    console.log(miCoche instanceof Coche) // devuelve verdadero (true)
+                    console.log(miCoche instanceof Object) // devuelve verdadero (true)
+                    
+
+                    /*
+                    
+                    .prototype se ejecuta desde el constructor(o clase) y hace referencia a su misma funcion constructora asi como de sus metodos , propiedades en caso que tenga y como ultimo
+
+
+                    Coche.prototype 
+                     {constructor: ƒ} -> 
+                        constructor: ƒ Coche(fabricante, modelo, ejercicio)
+                        [[Prototype]]: Object
+                    
+                    .__proto__ se ejecuta desde la istancia y hace referencia a Coche.prototype (clase_de_la_que_fue_creado.prototype)
+
+                    miCoche.__proto__ 
+                    {constructor: ƒ} ->
+                        constructor: ƒ Coche(fabricante, modelo, ejercicio)
+                        [[Prototype]]: Object
+
+                        
+                    APLICADO A ARRAYS
+                    
+                    imprimiendo constructor o clase
+                    console.log(Array) -> ƒ Array() { [native code] }
+
+
+                    Array.prototype
+                    👇  [constructor: ƒ, at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, …]
+                        at: ƒ at()
+                        concat: ƒ concat()
+                        constructor: ƒ Array()
+                        copyWithin: ƒ copyWithin()
+                        entries: ƒ entries()
+                        every: ƒ every()
+                        fill: ƒ fill()
+                        filter: ƒ filter()
+                        find: ƒ find()
+                        findIndex: ƒ findIndex()
+                        findLast: ƒ findLast()
+                        findLastIndex: ƒ findLastIndex()
+                        flat: ƒ flat()
+                        flatMap: ƒ flatMap()
+                        forEach: ƒ forEach()
+                        includes: ƒ includes()
+                        indexOf: ƒ indexOf()
+                        join: ƒ join()
+                        keys: ƒ keys()
+                        lastIndexOf: ƒ lastIndexOf()
+                        length: 0
+                        map: ƒ map()
+                        pop: ƒ pop()
+                        push: ƒ push()
+                        reduce: ƒ reduce()
+                        reduceRight: ƒ reduceRight()
+                        reverse: ƒ reverse()
+                        shift: ƒ shift()
+                        slice: ƒ slice()
+                        some: ƒ some()
+                        sort: ƒ sort()
+                        splice: ƒ splice()
+                        toLocaleString: ƒ toLocaleString()
+                        toString: ƒ toString()
+                        unshift: ƒ unshift()
+                        values: ƒ values()
+                        Symbol(Symbol.iterator): ƒ values()
+                        Symbol(Symbol.unscopables): {at: true, copyWithin: true, entries: true, fill: true, find: true, …}
+                        [[Prototype]]: Object  
+
+                    👆 
+                    |  
+                    |          const nw-lista =  [1,2]
+                    |          console.log(nw-lista)
+                    |                             0: 1
+                    |                             1: 2
+                    |                             length: 2
+                    -----> nw-lista.__proto__ ==  [[Prototype]]: Array(1,2)                                     
+                            [constructor: ƒ, at: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, …] ->
+                            at: ƒ at()
+                            concat: ƒ concat()
+                            constructor: ƒ Array()
+                            copyWithin: ƒ copyWithin()
+                            entries: ƒ entries()
+                            every: ƒ every()
+                            fill: ƒ fill()
+                            filter: ƒ filter()
+                            find: ƒ find()
+                            findIndex: ƒ findIndex()
+                            findLast: ƒ findLast()
+                            findLastIndex: ƒ findLastIndex()
+                            flat: ƒ flat()
+                            flatMap: ƒ flatMap()
+                            forEach: ƒ forEach()
+                            includes: ƒ includes()
+                            indexOf: ƒ indexOf()
+                            join: ƒ join()
+                            keys: ƒ keys()
+                            lastIndexOf: ƒ lastIndexOf()
+                            length: 0
+                            map: ƒ map()
+                            pop: ƒ pop()
+                            push: ƒ push()
+                            reduce: ƒ reduce()
+                            reduceRight: ƒ reduceRight()
+                            reverse: ƒ reverse()
+                            shift: ƒ shift()
+                            slice: ƒ slice()
+                            some: ƒ some()
+                            sort: ƒ sort()
+                            splice: ƒ splice()
+                            toLocaleString: ƒ toLocaleString()
+                            toString: ƒ toString()
+                            unshift: ƒ unshift()
+                            values: ƒ values()
+                            Symbol(Symbol.iterator): ƒ values()
+                            Symbol(Symbol.unscopables): {at: true, copyWithin: true, entries: true, fill: true, find: true, …}
+                            [[Prototype]]: Object
+                   */
+            
+            
+            // FORMAS DE CREAR VARIABLES 
+
+        
+
+                //LET PERMITE DECLARACION  Y REDECLARACION DE LA VARIABLE (reasignacion de nuevo valor a la variable)
+                //COSNT PERMITE DECLARACION PERO  Y !DECLARACION
+
+                //EN NINGUNO DE LOS CASOS SE PUEDE DECLARAR UNA VARIABLE CON EL MISMO NOMBRE DENTRO EL AMBITO (SCOPE)
+                //DONDE EXISTE (NI AUNQUE SE USE EL MISMO NOMBRE DE UN LET A CONST O VISEVERSA)
+
+                let variable = "hola mundo" // tipado dinamico = el tipo de dato pueden cambiar reemplazando el valor de la variable
+                const constante = "valor primitivo" // valor de variables const para valores primitivos no pueden cambiar
+                //constante = "cambio" // no se puede modificar aun siendo el mismo tipo
+                console.log(constante)
+                const arreglo = ["elemento",true,false,1] // se puede modificar el valor para los compuestos que ya no dejan de ser de su tipo(no se puede cambiar de tipo ejem;array a function)
+           
+            //NOTA IMPORTANTE
+  
+            /* 
+
+            EN JS SE ACCEDE POR VALOR A LAS VARIABLES CON PRIMITIVOS Y POR REFERENCIA A LOS COMPUESTOS
+
+            PRIMITOS : son inmutables lo que quiere decir que su valor no puede ser modificado (el espacio en memoria se manttiene estatico sin permitir que se cambie su valor que tenga almanecanado) ,
+                      por lo que si se quiere modificar en realidad asignamos a la misma variable el valor modificado anteriormente (primitivo += 10 /osea primitivo = primitivo + 10 ) cambiando el espacio en memoria y la anterior recolectada como basura 
+                      *aunque se use algun metodo no devuelve el objeto modificado sino que internamete reasigna a la misma varible el nuevo valor y lo devuelve*
+            
+            COMPUESTOS : son mutables lo que quiere decir que su valor puede ser modificado (el espacio en memoria se mantiene estatico permitiendo que se cambie su valor que tenga almanecanado) de esta forma se puede
+                        modificar el objeto compuesto directamente con algun metodo el cual devuelve la misma referencia del espacio en memoria del objeto en cuestion
+
+            */ 
+
+
+
+
+
+
+
+
+
+
+            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++TIPOS DE DATOS PRIMITIVOS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+                // *************************************************************************************STRING************************************************************************************
+
+                        //Literales
+                        let cadena1 = "UN string" // forma habitual
+
+                        // Objeto
+                        let cadena2 = new String("un string") // contructor  - no comun declarar de esta forma
+                        
+                        // string / 
+                        console.log(cadena1.length) // length = SIG largo/longitud
+                
+
+
+                        /* 
+                        
+                                        Nombre	               Operador	                                Descripción
+                            Concatenación de texto	             a + b	                    Une el contenido de a con el contenido de b     "hola" + "adios" --> "holaadios"
+                            Conversión a número (Suma unaria)	   +a              	Si a no es un número, intenta convertirlo en un número.  typeof(+"5") --> number  o  +"-5" --> -5  +"a" --> NaN    (El valor era string pero no es un número)
+                                    
+
+                            en caso de sumar numero con string se convierte en string el resultado:
+
+                            "2" + 2 o "2" + 2 --> "22"  
+
+                        */
+
+
+                        /*  
+                                    Método	                                        Descripción	                                              Oper.            nota breve
+
+                                                                                    METODOS DE POSICIONES   
+
+                                1   .charAt(pos)	                   Devuelve el carácter en la posición pos de la variable.	                   []                                             1
+                                2   .concat(str1, str2...)      	   Devuelve el texto de la variable unido a str1, a str2...	                    +                                             2
+                                3   .indexOf(str)	                   Devuelve la primera posición del texto str.	sino -1                                                                       3
+                                4   .indexOf(str, from-opcional)       Idem al anterior, partiendo desde la posición from(incluido).	                         por defecto 0                    4
+                                5   .lastIndexOf(str)                  devuelve pos de ultima aparicion de str                                                                                    5
+                                6   .lastIndexOf(str,from-opcional)    idem al interior pero buscando hasta from(incluido)                                       por default el ultimo indice     6
+
+                                                                                    METODOS DE BUSQUEDA
+
+                    BOOLEAN     7   .startsWith(s, ,from-opcional)     Comprueba si esta el texto comienza por s desde la posición from(incluido).               por default from 0               7
+                    BOOLEAN     8   .endsWith(s, to-opcional) 	       Comprueba si esta el texto hasta la posición to(excluido), termina por s.                 to por default el ultimo indice  8
+                    BOOLEAN     9   .includes(s, ,from-opcional) 	   Comprueba si el texto contiene el subtexto s desde la posición from(incluido).            por default from 0               9
+                                10  .search(regex)	                   Busca si hay un patrón que encaje con regex y devuelve la posición.                                                        10
+                                11  .match(regex)	                   Idem a la anterior, pero devuelve las coincidencias encontradas.                                                           11
+                    
+                                                                                    METODOS PARA TRANSFORMAR
+                    
+                                12  .repeat(n) 	                        Devuelve el texto de la variable repetido n veces.
+                                13  .toLowerCase()	                    Devuelve el texto de la variable en minúsculas.
+                                14  .toUpperCase()                   	Devuelve el texto de la variable en mayúsculas.
+                                15  .trim()	                            Devuelve el texto sin espacios a la izquierda y derecha.
+                                16  .trimStart()                    	Devuelve el texto sin espacios a la izquierda.
+                                17  .trimEnd() 	                        Devuelve el texto sin espacios a la derecha.
+                                18  .replace(str|regex, newstr)     	Reemplaza la primera aparición del texto str por newstr.
+                                19  .replaceAll(str|regex, newstr) 	    Reemplaza todas las apariciones del texto str por newstr.
+                                20  .replace(str|regex, func)	        Idem a .replace(), pero reemplazando por la devolución de func.
+                                21  .substr(ini, len-opcional)	        Devuelve el subtexto desde la posición ini(incluido) hasta cierto numero de caracteres(len). por default len(caracteres restantes) 
+                                22  .substring(ini, end-opcional)	    Devuelve el subtexto desde la posición ini(incluido) hasta pos end(excluido).                por default end longitud              
+                                23  .slice(ini, end)	                Idem a .substr() con leves diferencias.
+                                24  .split(sep|regex, limit)	        Separa el texto usando sep como separador, en limit fragmentos.
+                                25  .padStart(len, str) 	            Rellena el principio de la cadena con str hasta repetir n(len) veces.
+                                26  .padEnd(len, str) 	                Rellena el final de la cadena con str repetir n(len) veces.
+                                27   String.fromCharCode(num)	        Devuelve el carácter del valor unicode indicado en num.
+                                28  .charCodeAt(pos)	                Devuelve el valor unicode del carácter de la posición pos del texto.
+                    
+                    
+                    
+                    
+                    
+                                */
+
+                        //EJEMPLOS DE LOS METODOS      
+
+                            //METODOS DE POSICIONES   
+
+                            "Manz".charAt(0); // 'M'
+                            "Manz"[0]; // 'M'
+
+                            "Manz".concat("i", "to"); // 'Manzito' 
+                            "Manz" + "i" + "to"; // 'Manzito'
+                            "Manz" + 4 + 5; // 'Manz45' los numeros los vuelve string
+                            10 + 5 + 4 + 5; // 24
+                            
+                            //"L e n g u a j e J S  ,    p  á  g  i  n  a     d  e     J  a  v  a  s  c  r  i  p  t"
+                            //0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+
+                            "LenguajeJS, página de Javascript".indexOf("n"); // 2
+
+                                                                            //apartir de que indice buscara
+                            "LenguajeJS, página de Javascript".indexOf("n", 3); // 16
+                            "LenguajeJS, página de Javascript".indexOf("n", 17); // -1
+
+                            "LenguajeJS, página de Javascript".lastIndexOf("n"); // 16
+
+                                                                                //hasta que posicion buscara
+                            "LenguajeJS, página de Javascript".lastIndexOf("n", 3); // 2
+                            
+                            //METODOS DE BUSQUEDA
+
+                            "0123456".startsWith("0"); // true ("0123456" empieza por 'M')
+                            "0123456".startsWith("1", 1); // true ("123456" empieza por '1')
+                            "0123456".endsWith("5"); // false ("0123456" no acaba en 'o')
+                            "0123456".endsWith("3", 4); // true ("0123" acaba en 'n')
+                            "Manz".includes("an"); // true ('Manz' incluye 'an')
+                            "Manz".includes("M", 1); // false ('anz' no incluye 'M')
+
+                            "Hola a todos".search(/o/g); // 1, porque la primera "o" está en la posición 1
+                            "Hola a todos".match(/o/g); // ['o', 'o', 'o'], las 3 "o" que encuentra
+
+                            //METODOS PARA TRANSFORMAR
+
+                            "Na".repeat(5); // 'NaNaNaNaNa'
+                            "MANZ".toLowerCase(); // 'manz'
+                            "manz".toUpperCase(); // 'MANZ'
+                            "    Hola  ".trim(); // 'Hola'
+
+                            
+
+                            let x = "xyz xyz xyz"
+                            console.log(x.replace(new RegExp("xy","ig"),""))
+
+                            "Amigo".replace("A", "Ene"); // 'Enemigo'
+                            "Dispara".replace("Dis", "O") // "Opara"
+                            "Dispara".replace("a", "i"); // 'Dispira' (sólo reemplaza la primera aparición)
+                            "Dispara".replace(/a/g, "i"); // 'Dispiri' (reemplaza todas las ocurrencias)
+                            "Dispara".replaceAll("a", "i"); //'Dispiri' (reemplaza todas las ocurrencias sin necesidad de regex)
+
+                            "0123456".substr(3); //3456
+                            "0123456".substr(3,2); //34
+                            "Submarino".substr(3); // 'marino' (desde el 3 en adelante)
+                            "Submarino".substr(3, 1); // 'm'      (desde el 3, hasta el 3+1)
+                            
+                            "0123456".substring(3);//3456
+                            "0123456".substring(3,6);//345
+                            "Submarino".substring(3); // 'marino' (desde el 3 en adelante)
+                            "Submarino".substring(3, 6); // 'mar'    (desde el 3, hasta el 6)
+                            "0123456".slice(3);//3456
+                            "0123456".slice(3,6);//345
+
+                            "1.2.3.4.5".split("."); // ['1', '2', '3', '4', '5'] (5 elementos)
+                            "Hola a todos".split(" "); // ['Hola', 'a', 'todos'] (3 elementos)
+                            "Código".split(""); // ['C', 'ó', 'd', 'i', 'g', 'o'] (6 elementos)
+
+                            "5".padStart(6, "0"); // '000005'
+                            "A".padEnd(5, "·"); // 'A····'
+
+                            // UNICODE
+
+                            String.fromCharCode(65); // 'A' (65 es el código U+0041 en decimal)
+                            String.fromCharCode(0x0041); // 'A' (0x0041 es el código U+0041 en hexadecimal)
+                            "A".charCodeAt(0); // 65
+                            "A".charCodeAt(0).toString(16); // 41
+
+                            // El valor unicode del emoji 🐦 es (55357, 56358)
+                            emoji = "🐦";
+                            codigos = [];
+
+                            "🐦".length //2
+
+                            for (let i = 0; i < emoji.length; i++) {
+                            codigos.push(emoji.charCodeAt(i));
+                            }
+
+                            String.fromCharCode(...codigos); // '🐦' 
+                        
+                            //modificando el último código Unicode, podemos obtener diferentes emojis:
+                            
+                            String.fromCharCode(55357, 56358); // '🐦'
+                            String.fromCharCode(55357, 56359); // '🐧'
+                            String.fromCharCode(55357, 56360); // '🐨'
+                            ("\u0041"); // 'A'
+                            ("\ud83d\udc28"); // '🐨'
+
+               
+
+                //  ***************************************************************************************NUMBER************************************************************************************
+
+                        let a = 5.63 // forma habitual
+                        let b = new Number(2) // contructor 
+                        let c = "7.153"
+                        let d = 2.4 + c
+                        console.log(d) // al intentar sumar un str con number se concatena en vez de realizar la operacion(primero hay que comvertir los datos a numeros)
+
+
+
+                        /*
+                                                                        METODOS
+
+
+                                devuelve        Método	                         Descripción                                                      NOTA
+
+                                             METODOS DE COMPROBACIONES NUMERICAS DESDE EL OBJETO NUMBER 
+                                                
+                                BOOLEAN         Number.isFinite(n)	            Comprueba si n es un número finito.
+                                BOOLEAN         Number.isInteger(n)             Comprueba si n es un número entero.
+                                BOOLEAN         Number.isSafeInteger(n)	        Comprueba si n es un número seguro.
+                                BOOLEAN         Number.isNaN(n)	                Comprueba si n no es un número.
+
+                                             METODOS DE CONVERSION NUMERICA DESDE EL OBJETO NUMBER          
+
+                                NUMBER          Number.parseInt(s)	            Convierte una cadena de texto s en un número entero.
+                                NUMBER          Number.parseInt(s, radix)	    Idem al anterior, pero desde una base radix.
+                                NUMBER          Number.parseFloat(s)	        Convierte una cadena de texto s en un número decimal.
+                                NUMBER          Number.parseFloat(s, radix)	    Idem al anterior, pero desde una base radix.
+
+                                             METODOS DE REPRESENTACION NUMERICA
+
+                                STRING         .toExponential(n)	            Convierte el número a notación exponencial con n decimales.
+                                STRING         .toFixed(n)	                    Convierte el número a notación de punto fijo con n decimales.
+                                STRING         .toPrecision(p)	                Utiliza p dígitos de precisión en el número.
+
+                                 
+                        
+                        
+                        */
+
+                        //EJEMPLO DE METODOS  DE COMPROBACIONES NUMERICAS
+
+
+                            //¿Número finito? //isFinite
+
+                                Number.isFinite(42); // true
+                                Number.isFinite(Infinity); // false, es infinito
+
+                            // ¿Número entero? /isInteger
+                                Number.isInteger(5); // true
+                                Number.isInteger(4.6); // false, es decimal
+
+                            // ¿Número seguro?/isSafeInteger
+                                Number.isSafeInteger(1e15); // true
+                                Number.isSafeInteger(1e16); // false, es un valor no seguro
+
+                            // ¿es NaN? /isNaN
+                                Number.isNaN(NaN); // true
+                                Number.isNaN(5); // false, es un número
+
+                        //EJEMPLO DE METODOS DE CONVERSION NUMERICA
+
+                           //Number.parseInt();
+
+                                /*funciona perfectamente para variables de texto que contienen números o que empiezan por números.
+                                 Sin embargo, si la variable de texto comienza por un valor que no es numérico, parseInt() devolverá un NaN.
+                                */
+                                
+                                Number.parseInt("42.55"); // 42
+                                Number.parseInt("42"); // 42
+                                Number.parseInt("42€"); // 42
+                                Number.parseInt("Núm. 42"); // NaN
+                                Number.parseInt("A"); // NaN
+
+
+                                              //textto con numero
+                                                       //base numerica
+
+                                                       //binario        
+                                Number.parseInt("11101", 2); // 29 en decimal
+
+                                                       //octal  
+                                Number.parseInt("31", 8); // 25 en decimal
+
+                                                      //hexadecimal
+                                Number.parseInt("FF", 16); // 255 en decimal
+
+                           //Number.parseFloat(s)
+
+                                /*Si utilizamos parseInt() con un string en número decimal, nos quedaremos sólo con la parte entera, mientras que parseFloat() la conservará.*/
+                            
+                                Number.parseInt("42.55"); // 42
+
+                                Number.parseFloat("1.541"); // 1.541
+
+                        //EJEMPLO DE METODOS DE REPRESENTACION NUMERICA
+
+                            // toExponential
+                            
+                              1.5.toExponential(2); // "1.50e+0" en exponencial
+
+
+
+                            // toFixed
+
+                             1.5.toFixed(2); // "1.50" en punto fijo
+
+
+
+                            //toPrecision
+                                
+                              //INVESTIGAR
+
+                              1.5.toPrecision(1); // "2"
+
+
+                        
+                        // Resta unaria	-numero	Cambia de signo (niega) a numero. / numero = 5, entonces -A --> -5
+
+
+                //  ***************************************************************************************BOOLEAN************************************************************************************
+
+                    let v = true // forma habitual
+                    let f = Boolean(false) // contructor
+
+                    console.log(Boolean(-0)) // casting para validar el valor a boolean
+
+                    // Boolean / valores que se consideran true por lo tanto se ejecutara el if
+
+                    /* 
+                    if (true)
+                    if ({})
+                    if ([])
+                    if (42)
+                    if ("foo")
+                    if (new Date())
+                    if (-42)
+                    if (3.14)
+                    if (-3.14)
+                    if (Infinity)
+                    if (-Infinity)
+                    if (" ")
+                    */
+
+                    // Boolean / valores que se consideran false por lo tanto no se ejecutara el if
+                
+                    /* 
+                    if (false)
+                    if ( )
+                    if (undefined)
+                    if (0)
+                    if (-0)
+                    if (0n)
+                    if (NaN)
+                    if ("")
+                    */
+
+                //  ***************************************************************************************UNDEFINED,NULL Y NaN************************************************************************************
+
+                    let sinvalor; // por defecto al no asignarle un valor se le asigna undefine por javaScript/sig variable o referencia sin valor
+                    let conValorNull = null //indicando la ausencia de un valor (se le tuvo que haber seteado null)
+    
+                    /*
+                    El acrónimo NaN es un valor especial de Javascript que significa Not A Number (No es un número). Este valor se usa para representar 
+                    valores imposibles o indeterminados, como por ejemplo, resultados matemáticos de operaciones como:
+
+                    0 / 0 (Indeterminaciones)
+                    4 - 'a' (Valores imposibles)
+                    NaN + 4 (Operaciones con NaN como operando)
+                    */       
+                    let NotaNumber = "hola" * 3 // NaN =  Not a Number = SIG no es un numero = valor para indicar incompatiblidad al operar str con number (que no sea +)
+                    console.log(NotaNumber)
+
+                    let num = NaN;
+
+                    // La siguiente operación, contra toda lógica, es falsa
+                    num == NaN; // false
+
+                    // Se debe usar Number.isNaN() para comprobar si el valor es NaN ,dentro de los tipos de datos numéricos, NaN es un conjunto de números que no se pueden representar.
+                    Number.isNaN(num); // true
+
+                    // Si comprobamos el tipo de dato de NaN, nos dirá que es numérico
+                    typeof num; // number
+
+                    // ***************************************************************************************INTERPOLACION************************************************************************************
+                
+                    //interpolacion de variables = juntar dinamicamente desde la referencia a la variable (texto = varibletext1 + variabletext2)
+
+                    let nombre = "isai"
+                    let apellido = " lopez"
+                    let saludo = "hola mi nombre es " + nombre + apellido
+                    console.log(saludo)
+
+                    // interpolacion con uso de template string (`hola ${variable}`), para el salto de linea es explicito es decir no se requiere usar \n sino hacer el salto directo a la hora de escribir el codigo
+                    
+                    let nombre2 = "isai"
+                    let apellido2 = "lopez"
+                    let saludo2 = `hola mi nombre es ${nombre2} ${apellido2}`
+                    console.log(saludo2)
+
+                    
+                    let ul =`
+                    <ul>
+                        <li> uno </li>
+                        <li> dos</li>
+                        <li> tres </li>
+                    </ul>
+                    `
+                    console.log(ul)
+
+
+            // DATOS COMPUESTOS
+
+
+                //FUNCIONES
+
+
+                /*
+                Constructor	                               Descripción
+                function nombre(p1, p2...) { }	           Crea una función mediante declaración.
+                var nombre = function(p1, p2...) { }	   Crea una función mediante expresión.
+                new Function(p1, p2..., code);	           Crea una función mediante un constructor de objeto.
+                */
+
+
+                        // FUNCIONES DECLARADAS 
+                            // las funciones declaradas se pueden llamar antes de definirlas ya que el hoistin las acomoda antes para poder llamarla 
+                            //(Javascript primero busca las declaraciones de funciones y luego procesa el resto del código.)
+                            
+                            declarada("isai",35)
+
+                            function declarada(nombre ="default",edad) { // se pasan los parametros igual que en python al igual que  tambien se pueden asignar valores por defectos a estos
+                                let info = `the name is ${nombre} and the age is ${edad}`
+                                console.log(info)
+                                return info // funcion detenido al retorna / igual que python
+                            }
+                                
+                        
+                        
+                        // FUNCIONES EXPRESADAS/ANONIMAS
+                            //las funciones expresadas no se pueden llamar antes de su definicion ya que en si  es una funcion en una variable
+
+                            const expresada = function (nombre ="default",edad) {
+                                let info = `the name is ${nombre} and the age is ${edad}`
+                                console.log(info)
+                                return info
+                            }
+
+                            const expresada_Arrow_Functionn = (nombre ="default",edad) => { // declaracion Arrow fuction
+                                let info = `the name is ${nombre} and the age is ${edad}`
+                                console.log(info)
+                                return info
+                            }
+
+                            expresada()
+
+                        // ARROW FUNTION
+
+                           /*
+
+                           PUNTOS A CONSIDERAR
+
+                            Si el cuerpo de la función sólo tiene una línea, podemos omitir las llaves ({}).
+                            Además, en ese caso, automáticamente se hace un return de esa única línea, por lo que podemos omitir también el return.
+                            En el caso de que la función no tenga parámetros, se indica como en el ejemplo anterior: () =>.
+                            En el caso de que la función tenga un solo parámetro, se puede indicar simplemente el nombre del mismo: e =>.
+                            En el caso de que la función tenga 2 ó más parámetros, se indican entre paréntesis: (a, b) =>.
+                            Si queremos devolver un objeto, que coincide con la sintaxis de las llaves, se puede englobar con paréntesis: ({name: 'Manz'}).
+                           */
+
+                        
+                                        // requiere de los parentesis para los parametros si esque tiene mas de un parametro o no tiene
+                                            // si solo es una linea de codigo podemos omitir las llaves del bloque-de manera implicita retorna lo que tenga esta linea o su resultado que queramosn obtener
+                            const func1 = () => "Función flecha."; // 0 parámetros: Devuelve "Función flecha"
+                            const func2 = e => e + 1; // 1 parámetro: Devuelve el valor de e + 1
+                            const func3 = (a, b) => a + b; // 2 parámetros: Devuelve el valor de a + b
+
+                            const mas_de_un_parametro_y_masdeunalineaenbloque = (a,b) => { //necesito las llaves del bloque si tiene mas  de una linea de codigo 
+                                a + 5
+                                b + 9
+                                return a + b
+
+                        }
+
+                        //SALTANDO ARGGUMENTOS (FUNCIONA PARA CUALQUIER TIPO DE FUNCION (DECLARADA/EXPRESADA))
+                            
+                            declarada() // al no pasar argument se tomara los valores por defaut o como undefinde en caso de no tener por default
+                            declarada(null,50) //los argumentos se pasan en el orden que tiene los parametros en las funciones(no se pueden pasar accediendo al nombre del parametro) , por lo que se si se quiere pasar solo el segundo argumento puede usar null para pasar como argumento al primero y al segundo pasarse lo requerido 
+
+                            // o asi para saltarnos tales argumentos y solo pasar los que usaremos  
+                            function hola(a,e,i,o) {
+                                console.log(a,e,i,o)
+                            }
+
+                            hola(undefined,"e",undefined,"o")
+                            hola("a","e") // o podemos solo pasar los que usaremos sin generar ningun tipo de error si omitimos los restantes (considerar que se pasasan en el orden que fueron definidos en la funcion)
+
+                        //FUNCIONES AUTOEJECUTABLES
+                            
+                            //no necesitamos que tenga nombre, puesto que no la vamos a guardar
+                            
+                            (function (){
+                            console.log("Hola!!");
+                            })();
+
+                            // Función autoejecutable con parámetros
+                            (function (name){
+                            console.log(`¡Hola, ${name}!`);
+                            })("Manz");
+                            
+                            /*
+                            Ten en cuenta, que si la función autoejecutable devuelve algún valor con return, a diferencia de las funciones por expresión, 
+                            en este caso lo que se almacena en la variable es el valor que devuelve la función autoejecutada:
+                            */
+                            const F = (function (name) {
+                            return `¡Hola, ${name}!`;
+                            })("Manz");
+
+                            f; // '¡Hola, Manz!`
+                            typeof f; // 'string'
+
+                        //CLAUSURAS
+                           
+                            const incremento = (function () {
+                            let num = 0;
+                            return function () {
+                                num++;
+                                return num;
+                            };
+                            })();
+                     
+                            typeof incr; // 'function'
+
+                            incremento /*
+                                        function () {
+                                            num++;
+                                            return num;
+                                        };*/
+
+                            /*
+                             Como la variable incr es una clausura y mantiene la variable en su propio ámbito, veremos que a medida que ejecutamos incr(), 
+                             los valores de num (que estamos devolviendo) conservan su valor y se van incrementando.
+                            */
+
+                            incremento(); // 1
+                            incremento(); // 2
+                            incremento(); // 3
+
+                                                
+                                                                            
+                        
+
+                        //  ARROW FUNTION APLICADO A UN FOREACH
+                             arreglo2.forEach((el,index) => console.log(`<li id="${index}"> ${el} </li>`))
+
+                        // USANDO THIS(acceder al contexto en el que se encuentran(acceder a los datos de su padre que es elque lo envuelve)) EN UN OBJETO
+                            const OBJETO_NEW = {
+                                saludo :"hola",
+                                numero : 15,
+                                funtion1 :() => { 
+                                    console.log(this) // con arrow funtion accede al contexto de su padre(osea que accede a quien envuelve a su padre(los datos de su abuelo) )
+                                },                    //EN RESUMEN NO GENERA SCOPE ,POR LO QUE THIS ESCAPA DE HACER REFERENCIA A QUIEN LA EJECUTA COMO METODO
+                                
+                                funtion2 : function () { // con funcion normal si accede al contexto en el que se encuentra(datos de su padre) ,ya que no genera scope
+                                    console.log(this)
+                                    
+                                }
+                            } 
+                            console.log(OBJETO_NEW.funtion1())
+                            console.log(OBJETO_NEW.funtion2())
+
+
+                        
+                // ARRAYS
+                    
+                    /* Constructor                              	Descripción
+
+                        new Array(size)                             Crea un array de size elementos sin definir(undefine) esto si solo se le indica un solo argumento que es un numero,si size es de cualquier otro dato crea un arrays con esos dato/s
+                        new Array(e1, e2...)	                    Crea un array con los elementos indicados.
+                        [e1, e2...]	                                Simplemente, los elementos dentro de corchetes: []. Notación preferida.
+                    */
+                    
+                    const letters1 = new Array("5");              // Array con 1 elementos ["5"]
+                    const letters2 = new Array("a", "b", "c");    // Array con 3 elementos
+                    const letters3 = new Array(3);                // Array con 3 elementos vacíos (undefined)
+
+                    const arreglo_vacio = []
+                    const arreglo2 = [1,2,3,4, [true,"hola,","uno",6]] // forma habitual
+
+                    const arreglo3 = Array.of("hola",false,1) // contructor habitual
+                    const constructor_en_desuso = new Array(1,5,1,5) // contructor en desuso
+
+                    //crea array con numero de indices vacios
+                                                //cambia el valor de cada elemento por el argumento que se esta pasando   
+                    const arreglo4 = Array(100).fill(true) // forma para declarar un array con el numero de elementos de tal
+                    
+                    //acceso a elementos
+
+                        const letters = ["a", "b", "c"];
+                        
+                        //por indice
+                        letters[0];  // 'a' 
+                        
+                        //metodo para acceder de forma inversa (con numeros negativos siendo el ultimo -1)
+                        letters.at(0);    // "a"
+                        letters.at(1);    // "b"
+                        letters.at(3);    // undefined
+                        letters.at(-1);   // "c"
+                        letters.at(-2);   // "b"
+
+                        //el metodo anterior podria reemplazar a 
+                        const letters4 = ["a", "b", "c"];
+                        const lastItem = letters.length - 1;
+                        letters[lastItem];    // "c"
+
+                    //METODOS PARA AGREGAR O ELIMMINAR ELEMENTOS
+                        /*
+                            
+
+                            Método	                          Descripción
+
+                            .push(e1, e2, e3...)	         Añade uno o varios elementos al final del array. Devuelve el tamaño del array.
+                            .pop()	                         Elimina el último elemento del array. Devuelve dicho elemento.
+                            .unshift(e1, e2, e3...)        	 Añade uno o varios elementos al inicio del array. Devuelve el tamaño del array.
+                            .shift()	                     Elimina el primer elemento del array. Devuelve dicho elemento.
+                        */
+
+                        //ejemplo de los metodos anteriores
+
+                            //Los métodos .push() y .pop() actuan al final del array.
+                            //Los métodos .unshift() y .shift() actuan al inicio del array.
+
+                            const elements = ["a", "b", "c"]; // Array inicial
+
+                            elements.push("d");    // Devuelve 4.   Ahora elements = ['a', 'b', 'c', 'd']
+                            elements.push([1,2,3]);    // Devuelve 4.   Ahora elements = ['a', 'b', 'c', 'd',[1,2,3]]
+                            elements.pop();        // Devuelve 'd'. Ahora elements = ['a', 'b', 'c']
+
+                            elements.unshift("Z"); // Devuelve 4.   Ahora elements = ['Z', 'a', 'b', 'c']
+                            elements.shift();      // Devuelve 'Z'. Ahora elements = ['a', 'b', 'c']
+
+                    //ALTERNATIVA PARA CREAR ARRAYS
+                   
+                        /*
+                            Método	                    Descripción
+                            
+                            Array.from(obj) 	        Intenta convertir el obj en un array.
+                            Array.from(obj, fmap) 	    Idem, pero ejecuta la función fmap por cada elemento. Equivalente a .map()
+                            .concat(e1, e2, e3...)	    Devuelve los elementos pasados por parámetro concatenados al final del array.
+                            .join(sep) 	                Une los elementos del array mediante separadores sep en un .
+                        */
+
+                        //ejemplos de from
+                            const text = "12345";
+                            text.constructor.name;                          // "String"
+
+                            const letters5 = Array.from(text);               // ["1", "2", "3", "4", "5"]
+                            const letters6 = [...text];                      // ["1", "2", "3", "4", "5"]
+
+                            const divs = document.querySelectorAll("div"); //dara undefined (solo es para el ejemplo)
+                            divs.constructor.name;                          // "NodeList"
+
+                            const elements2 = Array.from(divs);              // [div, div, div]
+                            const elements3= [...divs];                     // [div, div, div]
+
+                            const text2= "12345";
+                            const numbers1 = Array.from(text, (number) => Number(number));   // [1, 2, 3, 4, 5]
+                            const numbers2= Array.from(text, Number);                       // Equivalente al anterior
+
+                            const numbers3 = [...text].map(Number);                          // Equivalente a los anteriores
+
+                            /*
+                            *NOTA*
+
+                            Pero no todos los elementos se pueden convertir a arrays. Por ejemplo,
+                            si intentamos convertir un undefined o un null, nos dará un error similar a Uncaught TypeError: null is not iterable.
+
+                            y en caso de querer convertir un objet a un array lo mas cercano serian los metodos:
+                            Object.keys(array), Object.values(array) u Object.entries(array).
+                            */
+                        //ejemplos de concat
+
+                            const firstPart = [1, 2, 3];
+                            const secondPart = [4, 5, 6];
+
+                            firstPart.concat(firstPart);              // Devuelve [1, 2, 3, 1, 2, 3]
+                            firstPart.concat(secondPart);             // Devuelve [1, 2, 3, 4, 5, 6]
+
+                            // Se pueden pasar elementos sueltos
+                            firstPart.concat(4, 5, 6);                // Devuelve [1, 2, 3, 4, 5, 6]
+
+                            // Se pueden concatenar múltiples arrays e incluso mezclarlos con elementos sueltos
+                            firstPart.concat(firstPart, secondPart, 7);  // Devuelve [1, 2, 3, 1, 2, 3, 4, 5, 6, 7]
+
+                        //ejemplo de split u join
+                        
+                            const letters7= ["a", "b", "c"];
+
+                            // Une elementos del array por el separador indicado
+                            letters.join("->");       // Devuelve 'a->b->c'
+                            letters.join(".");        // Devuelve 'a.b.c'
+
+                            // Separa elementos del string por el separador indicado
+                            "a.b.c".split(".");       // Devuelve ['a', 'b', 'c']
+                            "5-4-3-2-1".split("-");   // Devuelve ['5', '4', '3', '2', '1']
+                            
+                             //Ten en cuenta que los espacios en blanco también cuentan como carácter.
+                            "Hola a todos".split("");   // ['H', 'o', 'l', 'a', ' ', 'a', ' ', 't', 'o', 'd', 'o', 's'] , no se le pasa separador por lo que js toma la unidad minima que es cada caracter
+                             
+                            "Hola a todos".split(" ");   // ["Hola","a","todos"]
+
+                                        
+                    
+
+                        arreglo2.forEach(function(el,index){               // iterar array y por cada iteracion acceder a la funcion que imprime en consola el li con la interpolacion
+                            console.log(`<li id="${index}"> ${el} </li>`)
+                        })
+                    
+                    //ARRAY FUNCTION
+
+
+                     /*
+
+                        TODOS LOS ARRAY FUNCTION PUEDEN RECIBEIR EN SU CALLBACK 3 ARGUMENTOS
+
+                                                                                                 1       2        3
+                        Si se le pasa un 1 parámetro, este será el elemento del array.     | ELEMENTO
+                        Si se le pasa un 2DO parámetro, este será la posición en el array. | ELEMENTO ,INDICE
+                        Si se le pasa un 3ER parámetro, este será el array en cuestión.    | ELEMENTO ,INDICE , ARRAY_EN_CUESTION
+
+
+                         Método	                              Descripción
+                       
+                        .forEach(ƒ)	                 Ejecuta la función definida en ƒ por cada uno de los elementos del array.
+                        
+                        Comprobaciones
+                        .every(ƒ)	                Comprueba si todos los elementos del array cumplen la condición de ƒ.
+                        .some(ƒ)	                Comprueba si al menos un elemento del array cumple la condición de ƒ.
+                        
+                        Transformadores y filtros
+                        .map(ƒ)	                    Construye un array con lo que devuelve ƒ por cada elemento del array.
+                        .filter(ƒ)	                Filtra un array y se queda sólo con los elementos que cumplen la condición de ƒ. O lo que es igual a sólo con los elementos en el que en la iteracion el callback devuelva true
+                        .flat(level)	            Aplana el array al nivel level indicado.
+                        .flatMap(ƒ)	                Aplana cada elemento del array, transformándolo según ƒ. Equivale a .map().flat(1).
+                        
+                        Búsquedas
+                        .findIndex(ƒ) 	           Devuelve la posición del elemento que cumple la condición de ƒ. O lo que es igual a que el elementos en la iteracion el callback devuelva true
+                        .find(ƒ) 	               Devuelve el elemento que cumple la condición de ƒ. O lo que es igual a que el elementos en la iteracion el callback devuelva true
+                        .findLastIndex(ƒ)	       Idem a findIndex(), pero empezando a buscar desde el último elemento al primero.
+                        .findLast(ƒ)	           Idem a find(), pero empezando a buscar desde el último elemento al primero.
+                        
+                        Acumuladores
+                        .reduce(ƒ, initial)	       Ejecuta ƒ con cada elemento (de izq a der), acumulando el resultado.
+                        .reduceRight(ƒ, initial)   Idem al anterior, pero en orden de derecha a izquierda.
+
+                        */
+
+                            // ejemplo .forEach(ƒ) (no modifica array original / ejecuta f en cada iteracion)
+                                const letters8 = ["a", "b", "c", "d"];
+                                letters8.forEach((element) => console.log(element));     // Devuelve 'a' / 'b' / 'c' / 'd'
+
+                            //ejemplo .every(ƒ)-TODOS  (devueve true o false / no modifica array original)
+                                const letters9= ["a", "b", "c", "d"];
+                                letters9.every((letter) => letter.length === 1); // true
+
+                            //ejemplo .some(ƒ)ALMENOSUNO (devueve true o false / no modifica array original)
+                                const letters10 = ["a", "bb", "c", "d"];
+                                letters10.some((element) => element.length == 2);   // true
+
+                            //ejemplo .map(ƒ)TRANSFORMAR (devuelve nuevo array / no modifica array original ) 
+                                const names = ["Ana", "Pablo", "Pedro", "Pancracio", "Heriberto"];
+                                const nameSizes = names.map((name) => name.length);
+                                nameSizes // [3, 5, 5, 9, 9]
+
+                            //ejemplo .filter(ƒ) (devueve nuevo array /  no modifica array original) y si ningún elemento cumple la condición(o que en todos el callback devuelva false), filter() devuelve un array vacío
+                                const names2 = ["Ana", "Pablo", "Pedro", "Pancracio", "Heriberto"];
+                                const filteredNames = names.filter((name) => name.startsWith("P"));
+                                filteredNames; // Devuelve ['Pablo', 'Pedro', 'Pancracio']
+
+                            //ejemplo .flat(level)APLANAR (devuelve el array en cuestion modificado)
+                                
+                                //revisa todos los elementos del array en busca de arrays anidados, y los aplana hasta el nivel level indicado por parámetro.
+
+                                /*
+                                 representacion grafica de los niveles
+                                 siendo los elementos del array en cuestion el  nivel 0 es decir [ 0 ] y asi sucesivamente
+
+
+                                 [0] =  1er nivel
+                                 [0, [1] ] = con 2do nivel
+                                 [0, [1], [1, [2]] ] = con 3er nivel
+                                 
+                                 EN ESTE GRAFICO TAMBIEN SE MUESTRA COMO SE TOMAN LOS NIVELES EN EL METODO  , SIENDO EL PRIMERO NIVEL EL 0 (CONTANDO DESDE CERO IGUAL QUE EN INDICES DE UN ARRAY)
+                                */ 
+
+                                const values = [10, 15, 20, [25, 30], [40, 45, [50, 55], 60]];
+                                
+
+                                values.flat(0);         // [10, 15, 20, [25, 30], [40, 45, [50, 55], 60]];
+                                values.flat(1);         // [10, 15, 20, 25, 30, 40, 45, [50, 55], 60];
+                                values.flat(2);         // [10, 15, 20, 25, 30, 40, 45, 50, 55, 60];
+                                values.flat(Infinity);  // Idem al anterior, pero si hubieran más niveles los aplanaría todos
+
+                            //ejemplo de .flatMap(ƒ) === .map(ƒ).flat(1)
+
+                                const values2 = [10, 15, 20, [25, 30], 35, [40, 45, [50, 55], 60]];
+                                values2.flatMap(element => Array.isArray(element) ? element.length : 1 );    // [1, 1, 1, 2, 1, 4]
+
+                                //Finalmente, si el array que devuelve tuviera algún array entre sus elementos,es decir que tuviera un 2do nivel (que en este caso no es asi), le hubise aplicado un flat(1).
+                            
+                            //ejemplo Buscar find-elemento|findIndex-posicion (no modifica array original)
+                                const names3 = ["Ana", "Pablo", "Pedro", "Pancracio", "Heriberto"];
+
+                                //haciendo referencia al mismo elemento
+                                   
+                                    //devuelve elemento
+                                names3.find((name) => name.length == 5);       // 'Pablo'
+
+                                    //devuelve posicion del elemento
+                                names3.findIndex((name) => name.length == 5);  // 1
+
+                            //ejemplo findLast-elementto | findLastIndex- posicion
+
+                                //igual que find|findIndex pero buscando desde derecha a izquierda (orden inverso)
+                                const names4 = ["Ana", "Pablo", "Pedro", "Pancracio", "Heriberto"];
+
+                                names4.findLast((name) => name.length == 5);       // 'Pedro'
+                                names4.findLastIndex((name) => name.length == 5);  // 2
+                            
+                            //ejemplo reduce (no modifica array original)
+
+                                /*
+                                 reduce(callback,valorinicial_opcional)     
+                                 
+                                                                                                    /N iteracion
+                                                                                                             /lista en cuestion           
+                                 parametros del callbackque recibe reduce - callback(first, second, iteration, array)
+
+                                 
+
+                                 escenarios:
+
+                                  1- reduce(callback(first, second)):
+                                     > first contiene el valor del primer elemento del array y second el segundo elemento   
+                                     > En siguientes iteraciones, first es el acumulador que contiene lo que devolvió el callback en la iteración anterior
+                                     > mientras que second es el siguiente elemento del array
+
+                                  2- reduce(callback(first, second),valorinicial): 
+                                     > first en la primera iteracion es el valorinicial(2do argumento que le pasamos a reduce) y secund es el primer elemento del array
+                                     > en En siguientes iteraciones first es el acumulador que contiene lo que devolvió el callback en la iteración anterior
+                                     > mientras que second es el siguiente elemento del array
+                                */
+
+                                //escenario 1
+                                    const numbers = [95, 5, 25, 10, 25];
+                                    numbers.reduce((first, second) => {
+                                    console.log(`F=${first} S=${second}`);
+                                    return first + second;
+                                    });
+
+                                    // F=95  S=5    (1ª iteración: elemento 1: 95 + elemento 2: 5) = 100
+                                    // F=100 S=25   (2ª iteración: 100 + elemento 3: 25) = 125
+                                    // F=125 S=10   (3ª iteración: 125 + elemento 4: 10) = 135
+                                    // F=135 S=25   (4ª iteración: 135 + elemento 5: 25) = 160
+
+                                //escenario 2
+                                    const numbers4 = [95, 5, 25, 10, 25];
+                                    numbers4.reduce((accumulator, nextElement) => {
+                                    console.log(`F=${accumulator} S=${nextElement}`);
+                                    return accumulator + nextElement;
+                                    }, 0);
+
+                                    // F=0   S=95   (iteración inicial): 0 + elemento 1: 95) = 95
+                                    // F=95  S=5    (1ª iteración: elemento 1: 95 + elemento 2: 5) = 100
+                                    // F=100 S=25   (2ª iteración: 100 + elemento 3: 25) = 125
+                                    // F=125 S=10   (3ª iteración: 125 + elemento 4: 10) = 135
+                                    // F=135 S=25   (4ª iteración: 135 + elemento 5: 25) = 160
+
+                            //ejemplo .reduceRight - Hacia izquierda  
+                                const numbers7 = [95, 5, 25, 10, 25];
+                                numbers7.reduce((first, second) => first - second);      // 95 - 5 - 25 - 10 - 25. Devuelve 30
+                                numbers7.reduceRight((first, second) => first - second); // 25 - 10 - 25 - 5 - 95. Devuelve -110
+
+
+                //OBJETOS / OBJETOS = muy similares a los diccionarios en python
+
+
+                    const objeto_Isa = {
+                        nombre:"isai",
+                        apellido:"lopez",
+                        Funcion: function (){
+                            return `mi nombre es ${this.nombre} ${this.apellido}` // this para hacer referencia los atributos de si mismo
+                        },
+                        pasatiempos: ["programar","tocar guitarra","inglish"],
+                        Contacto: {
+                            correo: "isa@gma.com",
+                            numero: 99951635161
+                        }
+                    }
+
+                    console.log(objeto_Isa)
+                    console.log(objeto_Isa["nombre"])
+                    console.log(objeto_Isa.apellido)
+                    console.log(objeto_Isa.Funcion())
+                    console.log(objeto_Isa.pasatiempos[0])
+                    console.log(objeto_Isa.Contacto.correo)
+                    let valor_devuelto = objeto_Isa.Funcion()
+                    console.log(valor_devuelto)
+
+                    console.log(Object.keys(objeto_Isa))
+                    console.log(Object.values(objeto_Isa))
+                    console.log(objeto_Isa.hasOwnProperty("nombre")) // buscar propiedad en objeto-si no se encuentra devuelve false
+                    console.log(objeto_Isa.hasOwnProperty("defectos"))
+
+
+            //OPERADORES
+
+
+                //OPERADORES /aritmeticos
+
+            
+                /*
+                    +  suma
+                    -  resta
+                    * multiplicacion
+                    / division
+                    % modulo
+                    ** potencia
+
+                    
+                    Nombre	                    Operador	                       Descripción
+                    Asignación	                c = a + b	                       Asigna el valor de la parte derecha (en este ejemplo, una suma) a c.
+                    Suma y asignación	        a += b                             Es equivalente a a = a + b.
+                    Resta y asignación	        a -= b	                           Es equivalente a a = a - b.
+                    Multiplicación y asignación	a *= b	                           Es equivalente a a = a * b.
+                    División y asignación	    a /= b	                           Es equivalente a a = a / b.
+                    Módulo y asignación	        a %= b	                           Es equivalente a a = a % b.
+                    Exponenciación y asignación	a **= b	                           Es equivalente a a = a ** b.
+                    
+                */
+            
+
+
+                //OPERADORES /relacionales
+
+            
+                 /*
+                    EN JAVASCRIPT SE COMPARA EL VALOR SIENDO EL MISMO AUNQUE NO SEAN EL MISMO TIPO ejem ("5" es igual a 5)
+                    Y APARTE SE COMPARA EL TIPO DE DATO
+
+                
+                    < menor que
+                    > moyor que
+                    <= menor o igual que
+                    >= moyor o igual que
+                    != distino nivel de valor
+                    !== distinto a nivel de valor y tipo de dato
+                    == igual a nivel de valor
+                    === igual a nivel de valor y tipo de dato
+
+                    */
+
+                    let valor1 = 1,
+                        valor2 = "1"
+                    console.log(valor1 != valor2) 
+
+                    valor1 = "1"
+                    valor2 = 1
+                    console.log(valor1 !== valor2)
+
+
+                // OPERADORES //  decremento -  incremento
+            
+            
+                    let k = 1
+                    k = k + 3 // asignar la variable a lo que ya vale en si + 3
+                    k += 3 // version simplificada - lo mimso que python
+
+
+                //  OPERADORES / unarios
+
+                    let Uni = 5
+
+                    Uni ++ // incrementar en una unidad
+                                                    // FORMAS RECOMENDAS
+                    Uni -- // decrementar en una unidad
+
+                    console.log(++Uni) // incrementara y luego mostrar el valor de la variable
+                    console.log(Uni++) //  mostrar el valor de la variable y luego incrementar
+
+                    /*
+
+                    cuando se quiera usar la variable ya tendra el aumento/decremento,
+                    lo unico que hay que tener en cuenta es cual conviene usar dependiente de que valor
+                    quieres mostrar al usar el operador ( mostrar y luego aumentar++ || ++aumentar y mostrar )
+
+
+                    a a++ a         a ++a a
+                    - --- -         - --- -
+                    0  0  1         0  1  1
+                    1  1  2         1  2  2
+                    2  2  3         2  3  3
+                    3  3  4         3  4  4
+                    4  4  5         4  5  5
+                    */
+
+                //OPERADORES / logicos
+            
+                        /* 
+
+                        && ,||:     
+                        TOMAR EN CUENTA LOS VALORES QUE TIENDEN A TRUE O FALSE (ESE VALOR DEVOLVERAN Y NO EN SI LA VALIDACION LOGICA QUE SE TENGA)-tambien conocido como operador de corto circuito
+
+
+                                    Nombre	                    Operador	                        Descripción
+
+                            Operador lógico AND	                 a && b             	Devuelve a si es false, sino devuelve b.
+                            Operador ternario ?:	             a? b : c	            Si a es true, devuelve b, sino devuelve c.
+                            Operador lógico OR	                 a || b                 Devuelve a si es true, sino devuelve b.
+                            Operador lógico Nullish coalescing	 a ?? b            	Devuelve a si a es null o undefined, sino devuelve b.
+                        Operador de asignación lógica nula ??=	 A ??= b	               Es equivalente a A?? (A = b)
+                        Operador de encadenamiento opcional ?.  data?.name	     Permite intentar acceder a una propiedad, aunque su padre no exista.
+                            Operador unario lógico NOT	            !a	              Invierte el valor. Si es true devuelve false y viceversa.
+
+                        */
+
+                        //ejemplo con and logico:
+                    
+                                    //valor que tiende a true
+                                            //valor que tiende a false
+                            console.log([] && "")  // --> ""
+                            console.log(Boolean([] && "")) //->> false
+
+                        //ejemplo de como usarlo en practica aprovechando el valor que devuelve dependiente de la situacion:
+
+                            /* 45 && "OK"            // "OK"
+                                false && "OK"         // false
+
+                                const doTask = () => "OK!";   // Creamos función que devuelve "OK!"
+                                isCorrect && doTask()         // Si isCorrect es true, ejecuta doTask()
+                            */
+                            
+                        //ejemplo de operador ternario
+
+                            // Sin operador ternario
+
+                                let ROLE;
+                                let name = "Manz"
+                                
+                                if (name === "Manz") {
+                                    ROLE = "streamer";
+                                } else {
+                                    ROLE = "user";
+                                }
+
+                                // Con operador ternario
+                                const role = name === "Manz" ? "streamer" : "user";
+
+                        //diferencia de || y ??
+                         
+                            /*
+                                42 || 50          // 42
+                                42 ?? 50          // 42 (ambos se comportan igual)
+                                false || 50       // 50 (false es un valor falsy, devuelve el segundo)
+                                false ?? 50       // false (la parte izquierda no es null ni undefined, devuelve el primero)
+                                0 || 50           // 50 (0 es un valor falsy, devuelve el segundo)
+                                0 ?? 50           // 0 (la parte izquierda no es null ni undefined, devuelve el primero)
+                                null || 50        // 50 (null es un valor falsy, devuelve el segundo)
+                                null ?? 50        // 50 (devuelve el primero)
+                                undefined || 50   // 50 (undefined es un valor falsy, devuelve el segundo)
+                                undefined ?? 50   // 50 (devuelve el primero)
+                            */
+
+                       //ejemplo de ??=
+                                
+                            // Sin asignación lógica nula
+                            let xd = null;
+
+                            if (xd === null || xd === undefined) {
+                                xd = 50;
+                            }
+
+                            // Con asignación lógica nula
+                            xd ??= 50;
+
+                            // ejemplo practico
+                            /*
+                            const resetConfig = (data) => {
+                            data.life ??= 100;
+                            data.level ??= 1;
+                            return data;
+                            }
+
+                            resetConfig({ life: 25, level: 4 });      // { life: 25, level: 4 }
+                            resetConfig({ life: null, level: 2 });    // { life: 100, level: 2 }
+                            resetConfig({});   
+                            */
+
+                        //ejemplo de not(!)
+
+                            if (!(1 === 2)) { 
+                            console.log(true)
+                            }
+                        
+
+            // CONDICIONALES
+
+              //los if se ejecutan si la condicion dentro devuelve true y en caso que no devuelvan Boolean y devuelvan algun valor se ejecutara dependiente de si ese valor tiende a true
+
+                let valor = 0
+
+                if (valor > 1 ) {
+                    console.log("mayor que 1")
+                } else {                         // estructura if - else
+                    console.log("no es mayor 1")
+                }
+                
+                // elif en python
+
+                if (valor > 2) {
+                    console.log("mayor que 2")
+                } else if (valor > 4){     // elif en python
+                    console.log("mayor que 3")
+                } else if (valor > 4){     // elif en python
+                    console.log("mayor que 4")
+                } else {
+                    console.log("cualquier numero que no es del rango de 3 a 5")
+                }
+
+                // anidacion de if
+
+                if (valor % 2 === 0) {
+
+                    if (valor >= 6 && valor <= 120)
+                        console.log("el numero par esta entre 6 y 120") 
+                    else                                                       // if anidados (tienen que estar dentro del bloque if({}))
+                        console.log("el numero par  no esta  entre 6 y 120")
+                    
+                } else {
+                    console.log("el numero no es par")
+                }
+                
+                // IF - operador  = estructura if en  una linea de codigo = (condicion)? if:else
+
+                let one_linea = (valor === 0)?"el numero es 0":"el numero es distinto de 0" 
+
+                // o tambien asi para ser visualmente mas entedible(operador ternario)
+                one_linea = (valor === 0) 
+                ?"el numero es 0"           // if               
+                :"el numero es distinto de 0" //else
+            
+            // SWITCH = realizar una accion dependiento de que caso se compla al evaluar una misma variable para luego salir de swicht
+
+                switch (valor) {
+
+                    case 0: // caso a evaluar
+                        console.log("el numero es cero") // bloque que se ejecutara si se cumple el caso
+                        
+
+                    case 1 || 0:
+                        console.log("el numero es uno o cero")
+                        break; // salir del bloque de codigo en el que nos encontramos (SWITCH) ; igual que python , si no se coloca en switch entonces se evualuara el siguente caso         
+
+                    case 1:
+                        console.log("el numero es uno")
+                        break; 
+
+                    case 3:
+                        console.log("el numero es dos")
+                        break;     
+                
+                    default:
+                        console.log("el numero no esta entre 0 y 3")
+                        break;
+                }
+
+            // CICLOS 
+
+                /*
+                Tipo de bucle	                        Descripción
+
+                while	                                Bucles simples.
+                for	                                    Bucles clásicos por excelencia.
+                do..while	                            Bucles simples que se realizan siempre como mínimo una vez.
+                for..in	                                Bucles sobre posiciones de un array o llaves de un objeto literal
+                for..of	                                Bucles sobre elementos de un array
+                Array functions                     	Bucles específicos sobre arrays
+                */
+
+                // CICLOS / while
+
+            
+                    let vandera = 0
+                        
+                        // condicion
+                    while (vandera < 10 ) {
+                        console.log("while" + vandera) // bloque que se ejecutara mientras se cumpla //ULTIMO VALOR QUE MOSTRARA ES 9 YA QUE ENTRARA MIENTRAS SEA 9 Y EN ESTA OCACION SE AUNMENTA EN UNA UNIDAD DESPUES DE MOSTRAR EL VALOR (MUETRA 9 ...AUNMENTA EN UNA UNIDAD SIENDO LA BANDERA 10 Y AL YA NO CUMPLIR LA CONDICION NO EJECUTA EL BLOQUE DEL WHILE) 
+                        vandera ++ //ULTIMO VALOR QUE TENDRA LA VARIABLE ES 10
+                    }
+
+                // CICLOS / do while
+
+                    do {                                                                                             //
+                        console.log("do while" + vandera)   // bloque que se ejecuara antes de evaluar la condicion  //SE PODRIA VER COMO EL BLOQUE DEL WHILE
+                        vandera ++                                                                                   //
+                    } while (vandera < 15); // condicion que se evaluara despues de ejecutar el bloque do , si esque se cumple entrara nuevamente al do 
+
+
+                // CICLOS / for
+
+                                //LO MISMO QUE UN WHILE
+
+                        //vandera                 condicion       incremento o decremento de vandera
+                    for (let vandera_for = 0; vandera_for  < 10 ; vandera_for++) {
+                        console.log("for" + vandera_for)  // ejecucion si se cumple la condicion
+                        
+                    }
+ 
+                    //Incremento/decremento múltiple *see usar multiples inicializaciones separado por comas e ir contralando en el for *
+                    for (i = 0, j = 5; i < 5; i++, j--) {
+                        console.log("Valor de i y j:", i, j);
+                        }
+
+                    lista = [1,2,5,5,8,6]
+
+                    for (let vanderafor2=0; vanderafor2 < lista.length; vanderafor2++) {  // forma de recorrer un array con por su indice
+                        console.log("for 2 " + lista[vanderafor2])
+                    }
+                     
+                //ITERACION DE LOS DISTINTPOS TIPOS DE DATOS
+
+                        // ITERAR OBJETOS  
+                
+                                    // key    //objeto a recorrer
+                            for (const key in objeto_Isa) {
+                                console.log(`key = ${key}, value = ${objeto_Isa[key]}`) // codigo a ejecutar por cada iteracion
+                            }
+
+                                
+                        //ITERAR UN ARRAY / funciona igual para string
+                            let cadena = "iterables"
+                            cadena = cadena.split("")
+                            
+                            // forma correcta si se quiere iterar sobre el indice
+                            for (let index = 0; index < cadena.length; index++) {
+                                const element = cadena[index];
+                                
+                            }
+
+                                    //ele   iterable ( atajo si se quiere iterar sobre los elementos )
+                            for (const i of cadena) {  // no se puede usar for of para objetos
+                                console.log("iteracion en "+ i)
+                                
+                            }
+                                // FOR IN AUNQUE FUNCIONA PARA RECORRER INDICES DE UN ARREGLO , NO ES CORRECTO USARLO PARA ARRAYS(SOLO ES CORRECTO PARA OBEJETOS) DEBIDO A QUE EN REALIDAD RECORRE LAS LLAVES DE UN OBJETO (ARRAY ES UN OBJET ESPECIAL Y POR ESO FUNCIONA - ESTA RECOORIENDO LOS INDICES COMO SI FUERAN LAS LLAVES)
+                            for (const i in cadena ) {
+                                console.log(`ITERACION EN INDICE = ${i}, ELEMENTO = ${cadena[i]}`)
+                            }
+
+            // TRY -trato de errores
+
+            try { // try en pyton
+                console.log(variablle_no_declarada)    // bloque que se intentara ejecutar
+            } catch (error) {  // el except en python
+                console.log(error)    // bloque que se ejecutara si hay algun error
+            } finally { //finally en python
+                console.log("mi ejecucion sera haya o no haya errores")// ejecucion de bloque haya o no haya errores -lo mismo que python
+            }
+
+
+            try { // try en pyton
+                let numero = "diez"
+
+                if (isNaN(numero)) { // functioon isNaN devuelve true si es string o false si es number (ES UN NUMERO?)
+                    throw new Error("tienes que ingresar un numero") //capturar error personalizado - `para luego mostrarlo como error dectado en catch - lo que viene despues ya no se ejecuta debido a que ya se detecto como un error por lo que pasa directamente a catch
+                    console.log("esta linea y las demas que vienen en la estructura try no se ejecutaran porque ya se capturo un error - pasara al catch")
+                }
+                console.log(numero * numero)
+            } catch (error) {  // el except en python
+                console.log(`se produjo un error ${error}`)    // bloque que se ejecutara si hay algun error
+            }
+
+
+
+
+
+
+            // break & continue - #jonmircha
+
+                const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+
+                let CONTADOR = 0
+                while (CONTADOR < 4) {
+
+                    for (let i = 0; i < numeros.length; i++) {
+                    if (i === 5) {
+                        console.log("PARAMOS Y SALIMOS DEL FOR")
+                        break; // PARA Y SALE DEL FOR
+                        }
+                    console.log(numeros[i]);
+                    }
+
+                    if (CONTADOR === 2) {
+                        console.log(`PARAMOS WHILE Y SALIMOS EN ITERACION ${CONTADOR}`)
+                        break; 
+                    }
+
+                    CONTADOR++
+                }
+    
+
+                // for (let i = 0; i < numeros.length; i++) {
+                //   if (i === 5) {
+                //     continue; //SALTA CODIGO QUE VIENE Y CONTINUA A LA SIGUIENTE ITERACION
+                //   }
+                //   console.log(numeros[i]);
+                // } 
+
+            // DESTRUCTUTARACION
+
+
+                // without  desestructuracion
+
+            const listadesc = [0,1,2,3,4,5,6,7,8,9]
+
+            let cero = listadesc[0],
+                uno = listadesc[1],
+                dos = listadesc[2]
+            
+
+                // with  destructuracion
+
+
+                    // sintax para desestructurar un array
+                      //se puede dejar vacio tal posicion indice para saltarnos ese indice y la siguiente variable haria pues referencia al siguiente elemento que corresponda a tal indice(en este caso indice 2)
+            const [cero0, ,two] = listadesc // cada variable tomara el valor del indice correspodiente segun su posicion en la que se pusieron *NO NECESARIAMENTE TIENEN QUE SER 3 VIABLES(UNA POR CADA ELEMENTO DE LA LISTA)*
+            console.log(cero0,two)
+
+
+                                          //el resto del array se guardara como un nuevo array en una variable(en este caso restoEnUnArray) 
+            const [indice0,indice1,indice2,...restoEnUnArray] = listadesc
+            console.log(indice0,indice1,indice2,restoEnUnArray)
+
+            //aprovechando destructuracion para suap de variables (intercambiar valores de variables)
+              
+              //forma normal
+
+                let VALOR1 = 1,
+                    VALOR2 = 2
+                console.log(VALOR1,VALOR2)
+
+                let VALOR_GUARDADO = VALOR1
+                VALOR1 = VALOR2
+                VALOR2 = VALOR_GUARDADO
+                
+                console.log(VALOR1,VALOR2) // >> 2,1
+
+               //con destructuracion (PERO CREANDO NUEVAS VARIABES)
+
+                VALOR1 = 1,
+                    VALOR2 = 2
+               
+                let [VALUE2,VALUE1] = [VALOR1,VALOR2];
+
+               console.log(VALUE1,VALUE2) // >> 2,1
+             
+            
+            // sintax para desestructurar un objeto
+
+                const objedesc = {
+                Nombre:"isai",
+                Apellido:"lopez",
+                Nummovil:"9993332333",
+                direccion:{
+                    calle:47,
+                    entre:"25 y 27"
+                },
+                altura:"55 cm"
+            }
+
+            let {Apellido,Nummovil,Nombre} = objedesc // se tiene que crear la variable en donde se guardan los atributos del obejto con el nombre de dicho atributo ya que se acceden a ellos por su referencia y por lo mismo no importa el orden en el que se acceda *NO NECESARIAMENTE TIENEN QUE SER 3 VIABLES(UNA POR CADA ATRIBUTO DEL OBJETO)
+            console.log(Apellido,Nummovil,Nombre)
+
+                   //de esta forma la variable donde vamos a guardar el valor de dicha propiedad no necesariamente se tiene que llamar igual que la llave del objeto(renombramos nombre de variable)
+                                                                          //nuevo objeto con las propiedades restantes que no se guardaron en la destructuracion
+            const {Nummovil:numisai,Nombre:nombreisai,...objetoNew} = objedesc // se tiene que crear la variable en donde se guardan los atributos del obejto con el nombre de dicho atributo ya que se acceden a ellos por su referencia y por lo mismo no importa el orden en el que se acceda *NO NECESARIAMENTE TIENEN QUE SER 3 VIABLES(UNA POR CADA ATRIBUTO DEL OBJETO)
+            console.log(numisai,nombreisai,objetoNew)
+            
+            // destructuramos obj que esta como propiedad dentro de objedesc
+            let {direccion:{calle,entre}} = objedesc
+            console.log(calle,entre)
+
+            //FUNCION QUE DESTRUCTURA EL VALOR DEL PARAMETRO PARA ACCEDER DIRECTAMENTE A LAS PROPIEDADES QUE NOS INTERESAN DE EL
+
+
+            function GETnombreCompleto({nombre, apellido}) {
+                return `el nombre es ${nombre} ${apellido} `
+            }
+
+            const NEWPERSONA = {
+                nombre:"SAYO",
+                apellido:"GOMEZ",
+                numero:"5580"
+            }
+
+            GETnombreCompleto(NEWPERSONA)
+
+
+
+            // OBJETOS LITERABLES -manera de declar de forma directa los atributos
+
+            let raza = "callejero",
+                Name = "luna"
+
+            // asignacion normal de atributos en variables que se llaman igual que a las referencias y aparte una funcion
+            const OBJETO_perro = {
+                Name:Name,
+                raza:raza,
+                sonido:function ()  {
+                    console.log("guaa guau")
+                }                
+            }
+
+            console.log(OBJETO_perro.Name , OBJETO_perro.raza)
+            console.log(OBJETO_perro.sonido())
+
+            // declaracion de objeto de forma literal (atributos primitivos y compuestos de forma literal)
+            const OBJETO_dog = {
+                Name,
+                raza,
+                SONIDO() {
+                    console.log("guaa guau vete alv")
+                }                
+            }
+
+            console.log(OBJETO_dog.Name , OBJETO_dog.raza)
+            console.log(OBJETO_dog.SONIDO())
+
+            // PARAMETROS REST
+
+                              //b sera un array [2,3,4,5]
+                function sumas (a,...b) { // *arg en python
+                    let resultado = a              
+                    b.forEach(n => {
+                        resultado += n
+                    });
+                    return resultado
+
+
+                }             //a,...b = [2,3,4,5]     
+                let SUM = sumas(1,2,3,4,5)
+                console.log(SUM)
+
+            //OPERADOR SPREAD
+
+                //SPREAD con array
+
+                const arr1 = [1,2,3,4],
+                    arr2 = [4,8,8,...arr1] // descomponer el arr1 para que se acceda a los elementos y no en si al array
+                console.log(arr2)
+
+                //SPREAD con objetos
+
+                const cualidades = {
+                    inteligente:true,
+                    fuerte:true,
+                    veloz:false,
+                    idiomas:{
+                        espanol:true,
+                        ingles:false,
+                        italiano:false
+                    }
+                }
+
+                //TENER EN CUENTA QUE SE ACCEDE SOLO AL PRIMER NIVEL POR VALOR (ES DECIR SI MODIFICO idiomas se vera modificado igual en persona1 ya que idiomas se pasa por referencia y en persona1.idiomas estaria apuntando al mismo espacio de memoria) 
+                const persona1 = {
+                    ...cualidades,
+                    peso:"50 kg",
+                }
+                
+                console.log(persona1) 
+                /////////////////////////{inteligente: true, fuerte: true, veloz: false, idiomas: {…}, peso: '50 kg'}
+                                        // fuerte: true
+                                        // idiomas: {espanol: true, ingles: false, italiano: false}
+                                        // inteligente: true
+                                        // peso: "50 kg"
+                                        // veloz: false
+                                        // [[Prototype]]: Object
+
+
+            // FUNCION CONTRUCTORA(para crear una clase)
+
+                function animal(nombre,piernas) {
+
+                    //atributos
+                    this.Nombre = nombre // this se usa de la misma forma que con self en python
+                    this.Piernas = piernas
+
+                    //metodo
+                    this.saludar = function() {
+                        console.log(`hola mi nombre es ${this.Nombre}`)       
+                    }
+
+                    
+                
+                }
+
+            // metodo guardado en el prototipo de la funcion constructora (es una objet),sirve para que cada instancia que es cada objeto de la clase no guarde el metodo sino que se guarde en el prototipo del la clase(objet)
+             animal.prototype.cabeza = function () {
+                    console.log("tengo solo una cabeza")
+                }
+
+            let Perro = new animal("firulais",4)
+            console.log(Perro)
+            Perro.saludar()
+            Perro.cabeza()
+            
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // herrencia prototipica
+            
+            function mamifero(nombre,piernas,respiracion) {
+                this.super = animal
+                this.super(nombre,piernas)
+                this.respiracion = respiracion
+            }
+
+            mamifero.prototype = new animal()
+            mamifero.prototype.constructor = mamifero
+
+            //sobre escribir metodo de la clase animal en clase que esta herando de ella(modificar el metodo origal solo para la clase hijo)
+            mamifero.prototype.cabeza = function () {
+                    console.log("soy un MAMIFERIO y tengo solo una cabeza")
+                }
+
+            // crear nuevo metodo alojado en el obejeto contructor de la clase hijo , si se quiere crear un nuevo metodo en la nueva clase que no este en el contructor solo se tiene que escribir al crearla dentro de su bloque
+
+            mamifero.prototype.caminar = function () {
+                    console.log("soy un MAMIFERIO ,SOY TERRESTRE POR LO QUE CAMINO EN TIERRA")
+                }
+
+            //console.log(mamifero)
+            const scobydoo = new mamifero("SCOBY",4,"PULMONES")
+            console.log(scobydoo)
+            scobydoo.cabeza()
+            scobydoo.caminar()
+
+             
+           // OPERADOR DE CORTO CIRCUITO
+
+
+                console.log( false || null) // con or el operador ternnario ejecutara izquierda si es verdadero
+                console.log( false && null) // con and el operador ternnario ejecutara izquierda si es falso
+
+            
+
+                // !(true) == false || !(1==1) = fase
+                // !(false) == true || !(1==2) = true
+
+          //OBJETO MATH
+
+             /*
+                  
+                                                                            METODOS
+
+                            Método	              Descripción	                                                                Ejemplo
+
+                                                                     METODOS MATEMATICOS
+
+                            Math.abs(x)	          Devuelve el valor absoluto de x.	                                            -+|x|
+                            Math.sign(x) 	      Devuelve el signo del número: 1 positivo, -1 negativo	
+                            Math.exp(x)	          Exponenciación. Devuelve el número e elevado a x.	                            
+                            Math.expm1(x) 	      Equivalente a Math.exp(x) - 1.
+                            Math.max(a, b, c...)  Devuelve el número más grande de los indicados por parámetro.	
+                            Math.min(a, b, c...)  Devuelve el número más pequeño de los indicados por parámetro.	
+                            Math.pow(base, exp)	  Potenciación. Devuelve el número base elevado a exp.	baseexp
+                            Math.sqrt(x)	      Devuelve la raíz cuadrada de x.	
+                            Math.cbrt(x) 	      Devuelve la raíz cúbica de x.	
+                            Math.imul(a, b) 	  Equivalente a a * b, pero a nivel de bits.	
+                            Math.clz32(x) 	      Devuelve el número de ceros a la izquierda de x en binario (32 bits).
+
+                                                                     METODOS DE REDONDEO
+
+                            Math.round(x)	      Devuelve el redondeo de x (el entero más cercano)
+                            Math.ceil(x)	      Devuelve el redondeo superior de x. (el entero más alto)
+                            Math.floor(x)	      Devuelve el redondeo inferior de x. (el entero más bajo)
+                            Math.fround(x) 	      Devuelve el redondeo de x (flotante con precisión simple)
+                            Math.trunc(x) 	      Trunca el número x (devuelve sólo la parte entera)
+
+           
+             */
+                
+            //EJEMPLO DE  METODOS MATEMATICOS
+
+            Math.abs(-5); // 5
+            Math.sign(-5); // -1
+            Math.exp(1); // e, o sea, 2.718281828459045
+            Math.expm1(1); // 1.718281828459045
+            Math.max(1, 40, 5, 15); // 40
+            Math.min(5, 10, -2, 0); // -2
+            Math.pow(2, 10); // 1024
+            Math.sqrt(2); // 1.4142135623730951
+            Math.cbrt(2); // 1.2599210498948732
+            Math.imul(0xffffffff, 7); // -7
+
+            // Ejemplo de clz32 (count leading zeros)
+            // const x = 1;
+            // "0".repeat(Math.clz32(x)) + x.toString(2);
+            // Devuelve "00000000000000000000000000000001"
+
+
+            //EJEMPLO METODOS DE REDONDEO
+
+                // Redondeo natural, el más cercano
+                    Math.round(3.75); // 4
+                    Math.round(3.25); // 3
+
+                    Math.round(3.5); // 4 , si tiene .5 se va al siguiente entero mas alto
+                    
+                    //con negativos
+                    Math.round(-3.25); // -3
+                    Math.round(3.75) // -4
+
+                    Math.round(-3.5) // -3 , se va al numero entero mas alto / -3 es mayor que -3.5  (cuando es .5 funciona como ceil)
+
+
+                // Redondeo superior (entero que le sigue al entero con decimal que esta)
+
+                    Math.ceil(3.75); // 4
+                    Math.ceil(3.25); // 4
+                    Math.ceil(3); // si no tiene decimal devuelve el mismo numero en cuestion
+                    
+                    //con negativos
+                    Math.ceil(-3.75) //-3  -3 es mayor que -4
+
+                // Redondeo inferior (se va al entero en cuestion -entero menor)
+                    Math.floor(3.75); // 3
+                    Math.floor(3.25); // 3
+                    Math.floor(3) // si no tiene decimal devuelve el mismo numero en cuestion
+
+                    //con negativos
+                    Math.floor(-3.25); //-4 , -4 es menor que -3
+
+                // Redondeo con precisión
+                    Math.round(3.123456789); // 3
+                    Math.fround(3.123456789); // 3.1234567165374756
+
+                // Truncado (sólo parte entera)
+                    Math.trunc(3.75); // 3
+                    Math.trunc(-3.75); // -3
+                            
+
+
+
+        </script>    
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevos Tipos de Datos en JavaScript</title>
+</head>
+
+<body>
+  <h1>Nuevos Tipos de Datos en JavaScript</h1>
+  <script>
+    /* **********     Curso JavaScript: 49. Symbols - #jonmircha     ********** */
+    //  let id = Symbol("id2");
+    // let id2 = Symbol("id2");
+    // console.log(id === id2)
+    // console.log(id, id2);
+    // console.log(typeof id, typeof id2);
+
+    // const NOMBRE = Symbol("nombre");
+    // const SALUDAR = Symbol("saludar");
+
+    // const persona = {
+    //   [NOMBRE]: "Jon",
+    //   edad: 35
+    // };
+
+    // console.log(persona);
+
+     
+    // persona.NOMBRE = "Jonathan MirCha" // de esta forma crea nuevo atributo en vez de actualizar el symbol
+    // console.log(persona["NOMBRE"]) // no accede al symbol
+    // console.log(persona.NOMBRE); // como anteriormente describi no accede al symbol
+    // console.log(persona[NOMBRE]); // de esta forma se accede al symbol (sin el nombre entre "" como se accederia a un atributo normal de un objt)
+    // persona[SALUDAR] = function () {
+    //   console.log(`Hola`);
+    // }
+    // console.log(persona);
+
+    //  persona[SALUDAR]();
+
+    //  console.log(persona);
+
+    // for (let propiedad in persona) { // los symbol en los objetos como propiedades no se mostraran cuando se aceden itere el objeto     console.log(persona[propiedad]);
+    // }
+    // console.log(Object.getOwnPropertySymbols(persona)); // devuelve una lista con las prpiedades que son symbol en un objeto
+
+
+
+
+
+    /* **********     Curso JavaScript: 50. Sets - #jonmircha     ********** */
+  //    let uno = 1
+  //    const lista1 =[1,2]
+  //    const lista2 =[3,2]  
+  //                //primitivos no se repiten(que sean el mismo tipo y valor) | compuestos si se repiten siempre y cuando no se haga referencia al mismo en caso que este en una variable
+  //    const set = new Set([1, uno, 2, 3, 3, true, false, false, {}, {}, "hola","HOLA","1", lista1, lista1,[1,2], lista2]); // ningun valor(tipo de dato si se puede repetir por ejemplo "hola" y "HOLA") se repite * (los mutables/obj/listas/ - se puede repetir ya que no tienen el mismo id por lo que no son el mismo objeto(siempre y cuando sean diferente objeto por ejemplo diferente lista)) y todos los primitivos no se repiten aunque hagan referencia a dirente variable con el mismo valor
+  //   console.log(set); // >> Set(12){1, 2, 3, true, false, …} 
+  //                       // 0: 1
+  //                       // 1: 2
+  //                       // 2: 3
+  //                       // 3: true
+  //                       // 4: false
+  //                       // 5: Object
+  //                       // 6: Object
+  //                       // 7: "hola"
+  //                       // 8: "HOLA"
+  //                       // 9: "1"
+  //                       // 10: Array(2) | lista1
+  //                       // 12: Array(2) | [1,2]
+  //                       // 11: Array(2) | lista2
+
+  //   console.log(set.size); // length
+
+  // set.add(5); //  SE VAN AGREGANDO AL SET CONFIRME LOS AGREGAR 
+  // console.log(set)
+  //                     // 0: 1
+  //                       // 1: 2
+  //                       // 2: 3
+  //                       // 3: true
+  //                       // 4: false
+  //                       // 5: Object
+  //                       // 6: Object
+  //                       // 7: "hola"
+  //                       // 8: "HOLA"
+  //                       // 9: "1"
+  //                       // 10: Array(2)
+  //                       // 11: Array(2) 
+  //                       // 120:5
+
+  //   const set2 = new Set(); // crear set vacio
+  //   set2.add(1);
+  //   set2.add(2);
+  //   set2.add(2);
+  //   set2.add(3);
+  //   set2.add(true);
+  //   set2.add(false);
+  //   set2.add(true);
+  //   set2.add({});
+  //   console.log(set2);
+  //   console.log(set2.size);
+
+  //   console.log("Recorriendo set");
+  //   console.log(set[0])  // >> UNDEFINE, aunque aparece el indice en el por cada elemento del set no hay forma de acceder a el elemento de manera directa ni por el indice ni por el nombre. * si se itera si sera posible *
+  //   for (item of set) {
+  //     console.log(item);
+  //   }
+  //   console.log("TERMINANDO DE RECORRER")
+
+  //   console.log("Recorriendo set2");
+  //   console.log(set2);
+  //   set2.forEach(item => console.log((item)));
+  //   console.log("TERMINANDO DE RECORRER")
+
+  //   let arr = Array.from(set); // crear lista apartir de // se puede crear una lista apartir del objeto para acceder al elemento por el indice
+
+  //   console.log(arr);
+  //   console.log(arr[0]);
+  //   console.log(arr[9]);
+  //   console.log(set);
+  //  // set.delete("HOLA"); //poner el nombre tal cual del elemento
+  //   console.log(set);
+  //   console.log(set.has("hola")); // devuelve true si se encuentra
+  //   console.log(set.has(19));
+  //   //set2.clear(); vaciar set2
+  //   console.log(set2); 
+
+
+
+
+
+    /* **********     Curso JavaScript: 51. Maps - #jonmircha     ********** */
+    // const mapa = new Map(); 
+    //   console.log(mapa)
+    //   EL OBJETO MAP SE VERA ASI
+    //   >> Map(5){'nombre' => 'Jon', 'apellido' => 'MirCha', 'edad' => 35}
+    //   0: {"nombre" => "Jonathan MirCha"}
+    //   1: {"edad" => 35}
+    //   2: {19 => "diecinueve"}
+    //   3: {false => "falso"}
+    //   4: {Object => Object} 
+
+    // MAP PUEDE TENER CUALQUIER TIPO DE DATO/VALOR COMO LLAVE
+
+             //LLAVE  VALOR
+  //   mapa.set("nombre", "Jon"); // AGREGAR NUEVA {LLAVE => VALOR}
+  //   mapa.set("apellido", "MirCha");
+  //   mapa.set("edad", 35);
+  //   console.log(mapa);
+  //   console.log(mapa.size); //LENGTH
+  //   console.log(mapa.has("correo")); // EXISTE ?
+  //   console.log(mapa.has("nombre"));
+  //   console.log(mapa.get("nombre")); // OBTENER VALOR DE LA LLAVE NOMBRE
+  //   mapa.set("nombre","Jonathan MirCha");
+  //   console.log(mapa.get("nombre"));
+  //   mapa.set(19, "diecinueve");
+  //   mapa.set(false, "falso");
+  //   mapa.set({}, {});
+  //   mapa.delete(false); // ELIMINAR {LLAVE => VALOR} DEL MAP HACIENDO REFERENCIA A EL POR EL NOMBRE DE LA LLAVE (en este caso la llave es un false)
+  //   console.log(mapa);
+
+  //   // FORMA DE RECORRER MAP
+  //   for (let [key, value] of mapa) {
+  //     console.log(`Llave: ${key}, Valor:${value}`);
+  //   }
+
+  //  // FORMA DIRECTA DE CREAR MAP
+  //   const mapa2 = new Map([
+  //     ["nombre", "kEnAi"],
+  //     ["edad", 7],
+  //     ["animal", "perro"],
+  //     [null, "nulo"]
+  //   ]);
+
+  //   console.log(mapa2);
+  //              //
+  //   console.log(mapa2.keys()) // 👇 
+  //     //MapIterator {'nombre', 'edad', 'animal', null}
+  //         // [[Entries]]
+  //         // 0: "nombre"
+  //         // 1: "edad"
+  //         // 2: "animal"
+  //         // 3: null
+  //         // [[Prototype]]: Map Iterator
+  //         // [[IteratorHasMore]]: true
+  //         // [[IteratorIndex]]: 0
+  //         // [[IteratorKind]]: "keys"
+
+  //   const llavesMapa2 = [...mapa2.keys()]; // DESCOMPONER MAPA Y DEJAR SOLO LOS NOMBRE DE LAS LLAVES
+  //   const valoresMapa2 = [...mapa2.values()];
+  //   console.log(llavesMapa2);
+  //   console.log(valoresMapa2); 
+
+
+
+
+
+    /* **********     Curso JavaScript: 52. WeakSets & WeakMaps - #jonmircha     ********** */
+    
+    // WeakSets & WeakMaps GUARDAN OBJETOS ALOJADOS EN UNA VARIABLE Y SI ESA VARIABLE PASA A SER NULL AUTOMATICANTE SE ELIMINA DEL Weak
+    
+  //    const ws = new WeakSet(); // NUEVO WeakSet VACIO
+  
+  //   let valor1 = { "valor": 1 };
+  //   let valor2 = { "valor2": 2 };
+  //   let valor3 = { 
+  //               "nombre": "isai" ,
+  //               APELLIDO: "lopez",
+  //               "edad": 22
+  //                 };
+
+
+  //   // NO IMPORTA EL ORDEN EN QUE LOS AGREGUES O PONGAS PORQUE AL FINAL SE PONDRAN EN UN ORDEN AL AZAR
+  //   ws.add(valor1);
+  //   ws.add(valor1); // COMO COMPARTE SIMILITUDES CON SET NO SE PUEDE REPETIR EL MISMO VALOR
+  //   ws.add(valor2);
+  //   ws.add(valor3);
+
+  //   console.log(ws); //WeakSet {{…}, {…}, {…}}
+  //                     // 0: Object
+  //                     // 1: Object
+  //                     // 2: Object
+
+  //   // for (const iterator of ws) { // ERROR  WeakSets NO ES ITERABLE
+  //   //   console.log(iterator)
+  //   // }
+
+    
+  //   console.log(ws.has(valor1)); // SE ENCUENTRA ?
+  
+
+  //   //ws.delete(valor2); // ELIMINAR VALOR DEL WEAK WEAKSET
+    
+
+  // //CUANDO PASEN  SEG Y LOS VALORES DE LAS VARIABLES PANSEN A NULL SE ELIMINARAN DEL WEAKSET
+
+  //   // setInterval(() => console.log(ws), 4000);
+
+  //   // setTimeout(() => {
+  //   //   valor1 = null;
+  //   //   valor2 = null;
+  //   //   valor3 = null;
+  //   //   console.log("VALORES DE VARIABLES ACTALIZADOS A NULL")
+  //   // }, 5000); 
+
+
+
+  //*************************************  WEAKMAP *************************************
+
+    //  const wm = new WeakMap([ // ERROR  WeakMap NO SE DECLARA COMO MAP NORMAL PORQUE GUARDA VARIABLES QUE TIENEN UN OBJETO / SE TIENE QUE DECLARAR VACIO
+    //   ["nombre", "kEnAi"],
+    //   ["edad", 7],
+    //   ["animal", "perro"],
+    //   [null, "nulo"]
+    // ]);
+
+    
+
+  //   const wm = new WeakMap();
+  //   let llave1 = {si:"no",no:"si"};
+  //   let llave2 = {};
+  //   let llave3 = {};
+  //  //       key   value
+  //   wm.set(llave1, 1);
+  //   wm.set(llave2, 2);
+  //   wm.set(llave2, 5); // NO PUEDE RETIPIR  {Object => 1} QUE HAGA REFENCIA A LA MISMA VARIABLE SI LA LLAVE YA SE ENCUENTRA EN EL MAP -ESTO AUNQUE EL VALUE SEA OTRO
+  //   console.log(wm); // >> WeakMap {{…} => 2, {…} => 1}
+  //                     //  >> 0: {Object => 2}
+  //                     //      key: {si: 'no', no: 'si'} 
+  //                     //      value: 1
+  //                     //      1: {Object => 1}
+    
+  //   console.log(wm.has(llave1));
+  //   console.log(wm.has(llave3));
+    
+  //   console.log(wm.get(llave1));
+  //   console.log(wm.get(llave2));
+  //   console.log(wm.get(llave3));
+    
+    // wm.delete(llave2);
+    // console.log(wm);
+    
+    // wm.set(llave2, 2)
+    // wm.set(llave3, 3)
+    // console.log(wm);
+    
+    //  //DESPUES DE 5 SEG LAS VARIABLES DONDE ESTAN LOS OBJETOS PASARAN A SER NULL POR LO QUE SE ELIMINARAN DEL WAEKMAP
+    // //setInterval(() => console.log(wm), 1000);
+
+    // setTimeout(() => {
+    //   llave1 = null;
+    //   llave2 = null;
+    //   llave3 = null;
+    // }, 5000); 
+
+
+
+
+
+    /* **********     Curso JavaScript: 53. Iterables & Iterators - #jonmircha     ********** */
+    //const iterable = [1, 2, 3, 4, 5];
+    // const iterable = "Hola Mundo";
+    // const iterable = new Set([1, 2, 3, 3, 4, 5]);
+    // const iterable = new Map([["nombre", "jon"], ["edad", 35]]);
+    
+    //Accedemos al iterador del iterable
+    // const iterador = iterable[Symbol.iterator]();
+    // console.log(iterable);
+    // console.log(iterador);
+    // console.log(iterador.next());
+    // console.log(iterador.next());
+    // console.log(iterador.next());
+    // console.log(iterador.next())
+    // console.log(iterador.next());
+    // console.log(iterador.next());
+    // console.log(iterador.next());
+
+    //  let Done = iterador.next()
+     
+    
+    // while (!Done.done) {
+    //   console.log(Done.value)
+    //   Done = iterador.next()
+    // }
+
+    
+ 
+   
+
+
+
+
+
+    /* **********     Curso JavaScript: 54. Generators - #jonmircha     ********** */
+
+    //CADA YIELD ES COMO SI FUESE CADA UNO DE LOS ELEMENTOS DE UN ITERABLE
+     function* iterable() {
+      console.log("inicio")//*******
+      yield "yield 1";     //        PRIMERA LLAMADA LLEGARA HASTA AQUI(INCLYENDO YIELD) * CONJELATE Y A LA SIGUIENTE LLAMADA EJECUTARAS LO QUE VIENE HASTA EL YIELD 2(INCLUIDO) DEVOLVERA EL OBJETO DONDE APARECE DONE
+     
+      console.log("jajaj 1"); 
+      yield "yield 2";  //SEGUNDA LLAMADA LLEGARA HASTA AQUI (INCLYENDO YIELD)
+
+       console.log("jajaj 2")    //  
+       console.log("jajajaja 3") // TERCERA LLAMADA LLEGARA HASTA AQUI AUNQUE NO HAYA OTRO YIELD Y DEVOLVERA EL OBJETO CON TRUE EN DONDE PORQUE YA NO HAY MAS QUE ITERAR
+    }
+
+    //DARA "inicio" en las 3 ejecuciones / HAY QUE GUARDAR EN UNA VARIABLE PARA IR GUARDANDO DONDE QUEDO EL ITERADOR
+    console.log(iterable().next())
+    console.log(iterable().next()); 
+    console.log(iterable().next());
+
+    console.log("IERACION DESPUES DE GUARDAR EN UNA VARIABLE LA EJECUCION DE LA FUNCION PARA GUARDAR HASTA DONDE SE QUEDO LA ULTIMA LLAMADA");
+    let iterador = iterable();
+    
+    console.log(iterador);
+
+    console.log(iterador.next()); // PARA EN YIELD 1 Y DEVUELVE EL OBJETO DONE Y A LA SIGUIENTE LLLAMADA EJECUTA LO QUE SIGUE Y PARA EN YIELD 2
+    console.log("************");
+    console.log(iterador.next()); // PARA EN YIELD 2 Y DEVUELVE EL OBJETO DONE
+    console.log("************");
+    console.log(iterador.next()); // 
+  
+    // let contador = 0
+    // for (y of iterador) {
+    //   console.log(`iteracion ${contador}`)
+    //   console.log(y);
+    //   contador++
+    // }
+
+    const arr = [...iterable()];
+    console.log(arr);
+       //['yield 1', 'yield 2']
+         // 0: "yield 1"
+         // 1: "yield 2"
+         // length: 2
+         // [[Prototype]]: Array(0)
+
+
+
+
+ // LOS YIELD NO FUNCIONAN CON ASINCRONIA
+
+    // function cuadrado(valor) {
+    //   tiempo = Math.random() * 10000
+    //   setTimeout(() => {
+    //     console.log({valor, resultado: valor * valor,tiempo })
+    //   }, tiempo);
+    // }
+
+    // function* generador() {
+    //   console.log("Inicia Generator");
+    //   yield cuadrado(0);
+    //   yield cuadrado(1);
+    //   yield cuadrado(2);
+    //   yield cuadrado(3);
+    //   yield cuadrado(4);
+    //   yield cuadrado(5);
+    //   console.log("Termina Generator");
+    // }
+    // let gen = generador();
+    // for (let y of gen) {
+    //   console.log(y);
+    // } 
+
+
+
+
+
+    /* **********     Curso JavaScript: 55. Proxies - #jonmircha     ********** */
+
+    // const persona = {
+    //   nombre: "",
+    //   apellido: "",
+    //   edad: 0
+    // }
+
+    // const manejador = {
+
+    //   set(obj, prop, valor) {
+    //     if (Object.keys(obj).indexOf(prop) === -1) {
+    //       return console.error(`La propiedad "${prop}" no existe en el objeto persona.`);
+    //     }
+
+    //     if (
+    //       (prop === "nombre" || prop === "apellido") &&
+    //       !(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/g.test(valor))
+    //     ){
+    //       return console.error(`La propiedad "${prop}"" sólo acepta letras y espacios en blanco`);
+    //     }
+
+    //     obj[prop] = valor;
+    //   }
+
+    // }
+
+    // const jon = new Proxy(persona, manejador);
+    // jon.nombre = "Jon";
+    // jon.apellido = "MirCha1";
+    // jon.edad = 35;
+    // jon.twitter = "@jonmircha";
+    // console.log(jon);
+    // console.log(persona); 
+
+
+
+
+
+    /* **********     Curso JavaScript: 56. Propiedades Dinámicas - #jonmircha     ********** */
+        // let aleatorio = Math.round(Math.random() * 100);
+        // const objUsuarios = {
+        //   propiedad: "Valor",
+        //   [`id_${aleatorio}`]: "Valor Aleatorio"
+        // };
+
+        // console.log(objUsuarios);
+
+        // const usuarios = ["Jon", "Irma", "Miguel", "Kala", "kEnAi"];
+        // usuarios.forEach((usuario, index) => objUsuarios[`id_${index}`] = usuario);
+        // console.log(objUsuarios);
+
+
+        //codigo que no tiene nada que ver /estaba probando
+
+        //   let V = {}
+        //   let F = 0
+         
+        //  let VoF_Or = false || 0  // la expresion valid a verdadero (por ambos lados de la expresion) = ; izquierda ; verdader por 1 lado  = quien valida a true , falsa = derecha
+        //  let VoF_And = NaN && V // 
+
+        //  console.log(VoF_Or)
+        //  console.log(VoF_And)
+        //  let VoF = Boolean(F || V ) // lo que puedo hacer si no quiero usarlo como operador ternario 
+
+        // if (VoF_Or) {
+        //   console.log("hola")
+        //}
+  </script>
+</body>
+
+</html>
